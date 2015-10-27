@@ -7,8 +7,18 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.example.test.mobilesafe.R;
+import com.example.test.mobilesafe.entity.UpdateInfo;
+import com.example.test.mobilesafe.utility.HttpWeb;
+import com.example.test.mobilesafe.utility.XmlParser;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class SplashActivity extends AppCompatActivity {
+    private URL url;
+    private UpdateInfo updateInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +27,29 @@ public class SplashActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        String website = "http://192.168.1.116:8080/update.xml";
+        try {
+            url = new URL(website);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        getUpdateInfo();
+    }
+
+    private void getUpdateInfo() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    InputStream is = HttpWeb.getInputStream(url);
+                    updateInfo = XmlParser.updateInfoParser(is);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override
