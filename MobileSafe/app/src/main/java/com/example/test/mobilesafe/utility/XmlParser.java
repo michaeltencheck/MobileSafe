@@ -26,7 +26,7 @@ public class XmlParser {
                     }else if ("description".equals(xmlPullParser.getName())) {
                         String description = xmlPullParser.nextText();
                         updateInfo.setDescription(description);
-                    }else if ("apkUrl".equals(xmlPullParser.getName())) {
+                    }else if ("apkurl".equals(xmlPullParser.getName())) {
                         String apkUrl = xmlPullParser.nextText();
                         updateInfo.setApkUrl(apkUrl);
                     }

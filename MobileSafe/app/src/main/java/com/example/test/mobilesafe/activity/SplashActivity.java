@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.entity.UpdateInfo;
 import com.example.test.mobilesafe.utility.HttpWeb;
+import com.example.test.mobilesafe.utility.Logger;
 import com.example.test.mobilesafe.utility.XmlParser;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class SplashActivity extends AppCompatActivity {
+    private static final String TAG = "SplashActivity";
     private URL url;
     private UpdateInfo updateInfo;
 
@@ -45,6 +47,9 @@ public class SplashActivity extends AppCompatActivity {
                 try {
                     InputStream is = HttpWeb.getInputStream(url);
                     updateInfo = XmlParser.updateInfoParser(is);
+                    Logger.i(TAG, updateInfo.getApkUrl());
+                    Logger.i(TAG, updateInfo.getVersion());
+                    Logger.i(TAG, updateInfo.getDescription());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
