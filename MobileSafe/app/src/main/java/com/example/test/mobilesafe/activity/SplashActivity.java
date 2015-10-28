@@ -2,10 +2,14 @@ package com.example.test.mobilesafe.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,10 +24,12 @@ import android.widget.TextView;
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.entity.UpdateInfo;
 import com.example.test.mobilesafe.utility.AppVersion;
+import com.example.test.mobilesafe.utility.Downloader;
 import com.example.test.mobilesafe.utility.HttpWeb;
 import com.example.test.mobilesafe.utility.Logger;
 import com.example.test.mobilesafe.utility.XmlParser;
 
+import java.io.File;
 import java.io.InputStream;
 
 public class SplashActivity extends AppCompatActivity {
@@ -31,8 +37,8 @@ public class SplashActivity extends AppCompatActivity {
     private static final int GETUPDATEINFO_SUCCESS = 1;
     private static final int GETUPDATEINFO_FAIL = 2;
     private UpdateInfo updateInfo;
-    private TextView tv;
     private View v;
+    private ProgressDialog p;
     private String versionName, website;
     private Handler handler=new Handler(){
         @Override
@@ -69,6 +75,8 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
+                    p.show();
+                    upgrade();
                 }
             });
             b.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -82,6 +90,25 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
+    private void upgrade() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String address = updateInfo.getApkUrl();
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                        address.substring(address.lastIndexOf("/"));
+                try {
+                    File f = Downloader.downloadFile(address, path, p);
+                    p.dismiss();
+                    Logger.i(TAG, "Download success");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +118,9 @@ public class SplashActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         v = View.inflate(this, R.layout.dialog_content, null);
-        tv = (TextView) v.findViewById(R.id.tv_dc_content);
+
+        p = new ProgressDialog(this);
+        p.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 
         updateInfo = new UpdateInfo("0", "0", "0");
 
