@@ -1,6 +1,8 @@
 package com.example.test.mobilesafe.activity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
@@ -50,17 +52,32 @@ public class SplashActivity extends AppCompatActivity {
 
     private void versionCheck() {
         if (versionName.equals(updateInfo.getVersion()) || "0".equals(updateInfo.getVersion())) {
-            Dialog dialog = new Dialog(this);
-            String title = getResources().getString(R.string.update);
-            dialog.setTitle(title + updateInfo.getVersion());
-            dialog.setContentView(v);
-            dialog.show();
+            Intent i = new Intent(this, MainActivity.class);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            startActivity(i);
             Logger.i(TAG, "version same");
         } else {
-            Dialog dialog = new Dialog(this);
-            dialog.setTitle("" + updateInfo.getVersion());
-            dialog.setContentView(v);
-            dialog.show();
+            AlertDialog.Builder b = new AlertDialog.Builder(this);
+            String title = getResources().getString(R.string.update);
+            b.setTitle(title + updateInfo.getVersion());
+            b.setView(v);
+            b.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            b.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            b.create().show();
             Logger.i(TAG, "version different");
         }
     }
