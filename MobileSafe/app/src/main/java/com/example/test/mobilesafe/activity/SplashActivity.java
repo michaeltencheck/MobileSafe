@@ -1,5 +1,6 @@
 package com.example.test.mobilesafe.activity;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,7 @@ import android.view.WindowManager;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.entity.UpdateInfo;
+import com.example.test.mobilesafe.utility.AppVersion;
 import com.example.test.mobilesafe.utility.HttpWeb;
 import com.example.test.mobilesafe.utility.Logger;
 import com.example.test.mobilesafe.utility.XmlParser;
@@ -21,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
     private URL url;
     private UpdateInfo updateInfo;
+    private String versionName, website;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +33,15 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        String website = "http://192.168.1.116:8080/update.xml";
+        website = "http://192.168.1.116:8080/update.xml";
+
+        AppVersion appVersion = new AppVersion(this);
+
         try {
             url = new URL(website);
-        } catch (MalformedURLException e) {
+            versionName = appVersion.getVersionName();
+            Logger.i(TAG,versionName);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
