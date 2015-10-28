@@ -14,14 +14,10 @@ import com.example.test.mobilesafe.utility.HttpWeb;
 import com.example.test.mobilesafe.utility.Logger;
 import com.example.test.mobilesafe.utility.XmlParser;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
-    private URL url;
     private UpdateInfo updateInfo;
     private String versionName, website;
 
@@ -38,7 +34,6 @@ public class SplashActivity extends AppCompatActivity {
         AppVersion appVersion = new AppVersion(this);
 
         try {
-            url = new URL(website);
             versionName = appVersion.getVersionName();
             Logger.i(TAG,versionName);
         } catch (Exception e) {
@@ -53,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    InputStream is = HttpWeb.getInputStream(url);
+                    InputStream is = HttpWeb.getInputStream(website);
                     updateInfo = XmlParser.updateInfoParser(is);
                     Logger.i(TAG, updateInfo.getApkUrl());
                     Logger.i(TAG, updateInfo.getVersion());
