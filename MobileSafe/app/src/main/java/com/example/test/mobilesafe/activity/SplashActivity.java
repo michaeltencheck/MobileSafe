@@ -1,6 +1,8 @@
 package com.example.test.mobilesafe.activity;
 
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,8 +20,33 @@ import java.io.InputStream;
 
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
+    private static final int GETUPDATEINFO_SUCCESS = 1;
+    private static final int GETUPDATEINFO_FAIL = 2;
     private UpdateInfo updateInfo;
     private String versionName, website;
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case GETUPDATEINFO_SUCCESS:
+                    versionCheck();
+                    break;
+                case GETUPDATEINFO_FAIL:
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void versionCheck() {
+        if (versionName.equals(updateInfo.getVersion())) {
+            Logger.i(TAG, "version same");
+        } else {
+            Logger.i(TAG,"version different");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +80,9 @@ public class SplashActivity extends AppCompatActivity {
                     Logger.i(TAG, updateInfo.getApkUrl());
                     Logger.i(TAG, updateInfo.getVersion());
                     Logger.i(TAG, updateInfo.getDescription());
+                    handler.sendEmptyMessage(GETUPDATEINFO_SUCCESS);
                 } catch (Exception e) {
+                    handler.sendEmptyMessage(GETUPDATEINFO_FAIL);
                     e.printStackTrace();
                 }
             }
