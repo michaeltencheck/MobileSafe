@@ -1,5 +1,7 @@
 package com.example.test.mobilesafe.activity;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -7,7 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.entity.UpdateInfo;
@@ -23,6 +29,8 @@ public class SplashActivity extends AppCompatActivity {
     private static final int GETUPDATEINFO_SUCCESS = 1;
     private static final int GETUPDATEINFO_FAIL = 2;
     private UpdateInfo updateInfo;
+    private TextView tv;
+    private View v;
     private String versionName, website;
     private Handler handler=new Handler(){
         @Override
@@ -41,10 +49,19 @@ public class SplashActivity extends AppCompatActivity {
     };
 
     private void versionCheck() {
-        if (versionName.equals(updateInfo.getVersion())) {
+        if (versionName.equals(updateInfo.getVersion()) || "0".equals(updateInfo.getVersion())) {
+            Dialog dialog = new Dialog(this);
+            String title = getResources().getString(R.string.update);
+            dialog.setTitle(title + updateInfo.getVersion());
+            dialog.setContentView(v);
+            dialog.show();
             Logger.i(TAG, "version same");
         } else {
-            Logger.i(TAG,"version different");
+            Dialog dialog = new Dialog(this);
+            dialog.setTitle("" + updateInfo.getVersion());
+            dialog.setContentView(v);
+            dialog.show();
+            Logger.i(TAG, "version different");
         }
     }
 
@@ -55,6 +72,11 @@ public class SplashActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        v = View.inflate(this, R.layout.dialog_content, null);
+        tv = (TextView) v.findViewById(R.id.tv_dc_content);
+
+        updateInfo = new UpdateInfo("0", "0", "0");
 
         website = "http://192.168.1.116:8080/update.xml";
 
