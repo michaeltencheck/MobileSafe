@@ -23,19 +23,21 @@ public class Downloader {
         connection.setRequestMethod("GET");
         connection.setConnectTimeout(8888);
         connection.setReadTimeout(8888);
-        InputStream is = new BufferedInputStream(connection.getInputStream());
+        InputStream inputStream = connection.getInputStream();
         int total = connection.getContentLength();
         int len = 0;
         progressDialog.setMax(total);
         FileOutputStream fos = new FileOutputStream(file);
-        while (is.read() != -1) {
-            fos.write(is.read());
-            len += is.read();
-            progressDialog.setProgress(len);
+        byte[] buffer = new byte[1024];
+        int progress = 0;
+        while ((len = inputStream.read(buffer)) != -1) {
+            fos.write(buffer, 0, len);
+            progress += len;
+            progressDialog.setProgress(progress);
         }
         fos.flush();
         fos.close();
-        is.close();
+        inputStream.close();
         return file;
     }
 }

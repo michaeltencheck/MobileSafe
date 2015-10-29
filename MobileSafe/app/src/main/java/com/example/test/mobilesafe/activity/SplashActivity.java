@@ -58,14 +58,34 @@ public class SplashActivity extends AppCompatActivity {
 
     private void versionCheck() {
         if (versionName.equals(updateInfo.getVersion()) || "0".equals(updateInfo.getVersion())) {
-            Intent i = new Intent(this, MainActivity.class);
+           /* Intent i = new Intent(this, MainActivity.class);
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             startActivity(i);
-            Logger.i(TAG, "version same");
+            Logger.i(TAG, "version same");*/
+            AlertDialog.Builder b = new AlertDialog.Builder(this);
+            String title = getResources().getString(R.string.update);
+            b.setTitle(title + updateInfo.getVersion());
+            b.setView(v);
+            b.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    p.show();
+                    upgrade();
+                }
+            });
+            b.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            b.create().show();
+            Logger.i(TAG, "version different");
         } else {
             AlertDialog.Builder b = new AlertDialog.Builder(this);
             String title = getResources().getString(R.string.update);
@@ -98,15 +118,23 @@ public class SplashActivity extends AppCompatActivity {
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() +
                         address.substring(address.lastIndexOf("/"));
                 try {
-                    File f = Downloader.downloadFile(address, path, p);
+                    File file = Downloader.downloadFile(address, path, p);
                     p.dismiss();
+                    install(file);
                     Logger.i(TAG, "Download success");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
 
+    private void install(File file) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        finish();
+        startActivity(intent);
     }
 
     @Override
