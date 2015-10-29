@@ -39,6 +39,7 @@ public class SplashActivity extends AppCompatActivity {
     private UpdateInfo updateInfo;
     private View v;
     private ProgressDialog p;
+    private File file;
     private String versionName, website;
     private Handler handler=new Handler(){
         @Override
@@ -118,23 +119,14 @@ public class SplashActivity extends AppCompatActivity {
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() +
                         address.substring(address.lastIndexOf("/"));
                 try {
-                    File file = Downloader.downloadFile(address, path, p);
+                    file = Downloader.downloadFile(address, path, p);
                     p.dismiss();
-                    install(file);
                     Logger.i(TAG, "Download success");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
-    }
-
-    private void install(File file) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-        finish();
-        startActivity(intent);
     }
 
     @Override
@@ -154,11 +146,9 @@ public class SplashActivity extends AppCompatActivity {
 
         website = "http://192.168.1.116:8080/update.xml";
 
-        AppVersion appVersion = new AppVersion(this);
-
         try {
-            versionName = appVersion.getVersionName();
-            Logger.i(TAG,versionName);
+            versionName = AppVersion.getVersionName(this);
+            Logger.i(TAG, versionName);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -8,13 +8,7 @@ import android.content.pm.PackageManager;
  * Created by test on 10/28/2015.
  */
 public class AppVersion{
-    private Context context;
-
-    public AppVersion(Context context) {
-        this.context = context;
-    }
-
-    public String getVersionName() throws PackageManager.NameNotFoundException {
+    public static String getVersionName(Context context) throws PackageManager.NameNotFoundException {
         PackageManager manager = context.getPackageManager();
         PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
         return info.versionName;
