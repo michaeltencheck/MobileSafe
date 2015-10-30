@@ -40,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
     private static final int GETUPDATEINFO_SUCCESS = 1;
     private static final int GETUPDATEINFO_FAIL = 2;
+    private static final int INSTALLAPK = 3;
     private UpdateInfo updateInfo;
     private View v;
     private ProgressDialog p;
@@ -172,7 +173,20 @@ public class SplashActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-        startActivity(intent);
+//        startActivity(intent);
+        startActivityForResult(intent,INSTALLAPK);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == INSTALLAPK) {
+            if (resultCode == RESULT_CANCELED) {
+                Intent i = new Intent(this, MainActivity.class);
+                finish();
+                startActivity(i);
+            }
+        }
     }
 
     @Override
