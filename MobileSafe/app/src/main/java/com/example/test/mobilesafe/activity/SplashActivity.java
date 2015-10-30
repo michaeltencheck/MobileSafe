@@ -63,14 +63,16 @@ public class SplashActivity extends AppCompatActivity {
 
     private void versionCheck() {
         if (versionName.equals(updateInfo.getVersion()) || "0".equals(updateInfo.getVersion())) {
-           /* Intent i = new Intent(this, MainActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            finish();
             startActivity(i);
-            Logger.i(TAG, "version same");*/
+            Logger.i(TAG, "version same");
+        } else {
             AlertDialog.Builder b = new AlertDialog.Builder(this);
             String title = getResources().getString(R.string.update);
             b.setTitle(title + updateInfo.getVersion());
@@ -88,26 +90,9 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                }
-            });
-            b.create().show();
-            Logger.i(TAG, "version different");
-        } else {
-            AlertDialog.Builder b = new AlertDialog.Builder(this);
-            String title = getResources().getString(R.string.update);
-            b.setTitle(title + updateInfo.getVersion());
-            b.setView(v);
-            b.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    upgrade();
-                }
-            });
-            b.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
+                    finish();
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(i);
                 }
             });
             b.create().show();
@@ -143,10 +128,6 @@ public class SplashActivity extends AppCompatActivity {
                             installApk(file);
                         }
                     }
-/*                    file = Downloader.downloadFile(address, path, p);
-                    p.dismiss();
-                    Installer.installThreadApk(file,getApplicationContext());
-                    installApk(file);*/
                     Logger.i(TAG, "Download success");
                 } catch (Exception e) {
                     e.printStackTrace();
