@@ -3,6 +3,7 @@ package com.example.test.mobilesafe.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,7 +26,9 @@ import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.entity.UpdateInfo;
 import com.example.test.mobilesafe.utility.AppVersion;
 import com.example.test.mobilesafe.utility.Downloader;
+import com.example.test.mobilesafe.utility.DownloaderV1;
 import com.example.test.mobilesafe.utility.HttpWeb;
+import com.example.test.mobilesafe.utility.Installer;
 import com.example.test.mobilesafe.utility.Logger;
 import com.example.test.mobilesafe.utility.XmlParser;
 
@@ -40,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
     private View v;
     private ProgressDialog p;
     private File file;
-    private String versionName, website;
+    private String versionName, website,address, path;
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -71,6 +74,7 @@ public class SplashActivity extends AppCompatActivity {
             String title = getResources().getString(R.string.update);
             b.setTitle(title + updateInfo.getVersion());
             b.setView(v);
+            b.setCancelable(false);
             b.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -96,7 +100,6 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    p.show();
                     upgrade();
                 }
             });
@@ -115,18 +118,24 @@ public class SplashActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String address = updateInfo.getApkUrl();
-                String path = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                        address.substring(address.lastIndexOf("/"));
                 try {
                     file = Downloader.downloadFile(address, path, p);
                     p.dismiss();
+//                    Installer.installThreadApk(file,getApplicationContext());
+                    installApk(file);
                     Logger.i(TAG, "Download success");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    private void installApk(File file) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        startActivity(intent);
     }
 
     @Override
@@ -163,6 +172,9 @@ public class SplashActivity extends AppCompatActivity {
                 try {
                     InputStream is = HttpWeb.getInputStream(website);
                     updateInfo = XmlParser.updateInfoParser(is);
+                    address = updateInfo.getApkUrl();
+                    path = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                            address.substring(address.lastIndexOf("/"));
                     Logger.i(TAG, updateInfo.getApkUrl());
                     Logger.i(TAG, updateInfo.getVersion());
                     Logger.i(TAG, updateInfo.getDescription());
