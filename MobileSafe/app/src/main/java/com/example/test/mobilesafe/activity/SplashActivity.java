@@ -106,6 +106,38 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     file = new File(path);
+                    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                        if (file.exists()) {
+                            p.dismiss();
+                            installApk(file);
+                        } else {
+                            p.dismiss();
+                            file = Downloader.downloadFile(address, path, p);
+                            installApk(file);
+                        }
+                    } else {
+                        path = Environment.getDataDirectory().getAbsolutePath()
+                                + address.substring(address.lastIndexOf("/"));
+                        file = new File(path);
+                        if (file.exists()) {
+                            p.dismiss();
+                            installApk(file);
+                        } else {
+                            p.dismiss();
+                            file = Downloader.downloadFile(address, path, p);
+                            installApk(file);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+/*        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    file = new File(path);
                     int state = SDCardChecker.sdCardCheck(file);
                     if (state == SDCardChecker.FILE_EXISTS) {
                         p.dismiss();
@@ -133,7 +165,7 @@ public class SplashActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }).start();*/
     }
 
     private void installApk(File file) {
