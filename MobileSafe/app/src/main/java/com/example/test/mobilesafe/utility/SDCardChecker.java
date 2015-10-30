@@ -8,9 +8,10 @@ import java.io.File;
  * Created by test on 10/29/2015.
  */
 public class SDCardChecker {
-    private static final int FILE_EXISTS = 0;
-    private static final int FILE_NOT_EXISTS = 1;
-    private static final int SDCARD_UNAVAILABLE = 2;
+    public static final int FILE_EXISTS = 0;
+    public static final int FILE_NOT_EXISTS = 1;
+    public static final int INTERNAL_EXISTS = 2;
+    public static final int INTERNAL_NOT_EXISTS = 3;
 
     public static int sdCardCheck(File file) {
         String state = Environment.getExternalStorageState();
@@ -21,7 +22,11 @@ public class SDCardChecker {
                 return FILE_NOT_EXISTS;
             }
         } else {
-            return SDCARD_UNAVAILABLE;
+            if (file.exists()) {
+                return INTERNAL_EXISTS;
+            } else {
+                return INTERNAL_NOT_EXISTS;
+            }
         }
     }
 }

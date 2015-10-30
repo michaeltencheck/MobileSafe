@@ -30,6 +30,7 @@ import com.example.test.mobilesafe.utility.DownloaderV1;
 import com.example.test.mobilesafe.utility.HttpWeb;
 import com.example.test.mobilesafe.utility.Installer;
 import com.example.test.mobilesafe.utility.Logger;
+import com.example.test.mobilesafe.utility.SDCardChecker;
 import com.example.test.mobilesafe.utility.XmlParser;
 
 import java.io.File;
@@ -119,10 +120,33 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    file = Downloader.downloadFile(address, path, p);
+                    file = new File(path);
+                    int state = SDCardChecker.sdCardCheck(file);
+                    if (state == SDCardChecker.FILE_EXISTS) {
+                        p.dismiss();
+                        installApk(file);
+                    }else if(state == SDCardChecker.FILE_NOT_EXISTS) {
+                        file = Downloader.downloadFile(address, path, p);
+                        p.dismiss();
+                        installApk(file);
+                    } else {
+                        path = Environment.getDataDirectory().getAbsolutePath() +
+                                address.substring(address.lastIndexOf("/"));
+                        file = new File(path);
+                        int stateInternal = SDCardChecker.sdCardCheck(file);
+                        if (stateInternal == SDCardChecker.INTERNAL_EXISTS) {
+                            p.dismiss();
+                            installApk(file);
+                        } else {
+                            file = Downloader.downloadFile(address, path, p);
+                            p.dismiss();
+                            installApk(file);
+                        }
+                    }
+/*                    file = Downloader.downloadFile(address, path, p);
                     p.dismiss();
-//                    Installer.installThreadApk(file,getApplicationContext());
-                    installApk(file);
+                    Installer.installThreadApk(file,getApplicationContext());
+                    installApk(file);*/
                     Logger.i(TAG, "Download success");
                 } catch (Exception e) {
                     e.printStackTrace();
