@@ -82,7 +82,6 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    p.show();
                     upgrade();
                 }
             });
@@ -101,6 +100,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void upgrade() {
+        p.show();
         new Thread(new Runnable() {
             @Override
             public void run() {
