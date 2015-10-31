@@ -25,8 +25,8 @@ public class HttpWeb {
         URL url = new URL(str);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        connection.setConnectTimeout(8888);
-        connection.setReadTimeout(8888);
+        connection.setConnectTimeout(2222);
+        connection.setReadTimeout(2222);
         InputStream is = new BufferedInputStream(connection.getInputStream());
         return is;
     }

@@ -1,16 +1,12 @@
 package com.example.test.mobilesafe.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,19 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.entity.UpdateInfo;
 import com.example.test.mobilesafe.utility.AppVersion;
 import com.example.test.mobilesafe.utility.Downloader;
-import com.example.test.mobilesafe.utility.DownloaderV1;
 import com.example.test.mobilesafe.utility.HttpWeb;
-import com.example.test.mobilesafe.utility.Installer;
 import com.example.test.mobilesafe.utility.Logger;
-import com.example.test.mobilesafe.utility.SDCardChecker;
 import com.example.test.mobilesafe.utility.XmlParser;
 
 import java.io.File;
@@ -44,6 +34,7 @@ public class SplashActivity extends AppCompatActivity {
     private UpdateInfo updateInfo;
     private View v;
     private ProgressDialog p;
+    private Intent intent;
     private File file;
     private String versionName, website,address, path;
     private Handler handler=new Handler(){
@@ -55,6 +46,8 @@ public class SplashActivity extends AppCompatActivity {
                     versionCheck();
                     break;
                 case GETUPDATEINFO_FAIL:
+                    finish();
+                    startActivity(intent);
                     break;
                 default:
                     break;
@@ -64,14 +57,13 @@ public class SplashActivity extends AppCompatActivity {
 
     private void versionCheck() {
         if (versionName.equals(updateInfo.getVersion()) || "0".equals(updateInfo.getVersion())) {
-            Intent i = new Intent(this, MainActivity.class);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2222);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             finish();
-            startActivity(i);
+            startActivity(intent);
             Logger.i(TAG, "version same");
         } else {
             AlertDialog.Builder b = new AlertDialog.Builder(this);
@@ -91,8 +83,7 @@ public class SplashActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                     finish();
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
+                    startActivity(intent);
                 }
             });
             b.create().show();
@@ -134,46 +125,12 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }
         }).start();
-/*        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    file = new File(path);
-                    int state = SDCardChecker.sdCardCheck(file);
-                    if (state == SDCardChecker.FILE_EXISTS) {
-                        p.dismiss();
-                        installApk(file);
-                    }else if(state == SDCardChecker.FILE_NOT_EXISTS) {
-                        file = Downloader.downloadFile(address, path, p);
-                        p.dismiss();
-                        installApk(file);
-                    } else {
-                        path = Environment.getDataDirectory().getAbsolutePath() +
-                                address.substring(address.lastIndexOf("/"));
-                        file = new File(path);
-                        int stateInternal = SDCardChecker.sdCardCheck(file);
-                        if (stateInternal == SDCardChecker.INTERNAL_EXISTS) {
-                            p.dismiss();
-                            installApk(file);
-                        } else {
-                            file = Downloader.downloadFile(address, path, p);
-                            p.dismiss();
-                            installApk(file);
-                        }
-                    }
-                    Logger.i(TAG, "Download success");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();*/
     }
 
     private void installApk(File file) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-//        startActivity(intent);
         startActivityForResult(intent,INSTALLAPK);
     }
 
@@ -182,9 +139,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == INSTALLAPK) {
             if (resultCode == RESULT_CANCELED) {
-                Intent i = new Intent(this, MainActivity.class);
                 finish();
-                startActivity(i);
+                startActivity(intent);
             }
         }
     }
@@ -198,6 +154,8 @@ public class SplashActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         v = View.inflate(this, R.layout.dialog_content, null);
+
+        intent = new Intent(this, MainActivity.class);
 
         p = new ProgressDialog(this);
         p.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
