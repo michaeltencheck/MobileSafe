@@ -43,23 +43,23 @@ public class FunctionInfoAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
-        Viewholder viewholder;
+        ViewHolder viewholder;
         if (convertView == null) {
             view = View.inflate(context, R.layout.item_function, null);
-            viewholder = new Viewholder();
+            viewholder = new ViewHolder();
             viewholder.imageView = (ImageView) view.findViewById(R.id.iv_if_icon);
             viewholder.textView = (TextView) view.findViewById(R.id.tv_if_name);
             view.setTag(viewholder);
         } else {
             view = convertView;
-            viewholder = (Viewholder) view.getTag();
+            viewholder = (ViewHolder) view.getTag();
         }
         viewholder.imageView.setImageDrawable(list.get(position).getDrawable());
         viewholder.textView.setText(list.get(position).getName());
         return view;
     }
 
-    private static class Viewholder {
+    private static class ViewHolder {
         private ImageView imageView;
         private TextView textView;
     }

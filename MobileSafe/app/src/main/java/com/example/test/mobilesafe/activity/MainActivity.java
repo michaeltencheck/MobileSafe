@@ -1,11 +1,14 @@
 package com.example.test.mobilesafe.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
@@ -27,14 +30,29 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.lv_am_function_list);
 
+        final Intent intent0 = new Intent(this, StealProtectActivity.class);
+
         list = new ArrayList<>();
         adapter = new FunctionInfoAdapter(this, list);
 
-        listAdd(R.drawable.ic_protect, R.string.steel_protect);
+        listAdd(R.drawable.ic_protect, R.string.steal_protect);
 
         listAdd(R.drawable.ic_accessibility, R.string.info_protect);
 
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        startActivity(intent0);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
     private void listAdd(int drawable, int str) {

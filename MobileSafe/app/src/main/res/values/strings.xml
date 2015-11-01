@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">MobileSafe</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
     <string name="update">发现新版本：</string>
     <string name="update_content">新版本，更精彩，等你来发掘</string>
     <string name="ok">马上升级</string>
     <string name="no">暂不升级</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="steel_protect">手机防盗</string>
+    <string name="title_activity_main">手机保护神</string>
+    <string name="steal_protect">手机防盗</string>
     <string name="info_protect">信息保护</string>
+    <string name="title_activity_steal_protect">StealProtectActivity</string>
 </resources>
