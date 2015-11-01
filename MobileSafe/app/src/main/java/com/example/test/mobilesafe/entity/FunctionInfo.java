@@ -9,6 +9,11 @@ public class FunctionInfo {
     private Drawable drawable;
     private String name;
 
+    public FunctionInfo(Drawable drawable, String name) {
+        this.drawable = drawable;
+        this.name = name;
+    }
+
     public Drawable getDrawable() {
         return drawable;
     }

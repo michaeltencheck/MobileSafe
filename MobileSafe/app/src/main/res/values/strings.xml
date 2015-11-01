@@ -8,4 +8,6 @@
     <string name="ok">马上升级</string>
     <string name="no">暂不升级</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="steel_protect">手机防盗</string>
+    <string name="info_protect">信息保护</string>
 </resources>
