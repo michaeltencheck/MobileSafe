@@ -1,17 +1,11 @@
 package com.example.test.mobilesafe.activity;
 
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.test.mobilesafe.R;
-import com.example.test.mobilesafe.utility.Downloader;
-import com.example.test.mobilesafe.utility.Logger;
-import com.example.test.mobilesafe.utility.SDCardChecker;
-
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
