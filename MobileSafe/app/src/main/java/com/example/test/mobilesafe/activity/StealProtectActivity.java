@@ -2,6 +2,7 @@ package com.example.test.mobilesafe.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,7 @@ import android.view.View;
 import com.example.test.mobilesafe.R;
 
 public class StealProtectActivity extends AppCompatActivity {
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,10 @@ public class StealProtectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_steal_protect);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        editor = getSharedPreferences("config", MODE_PRIVATE).edit();
+        editor.putString("password", "");
+        editor.commit();
 
         getAlertDialog();
 
@@ -30,6 +36,15 @@ public class StealProtectActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    private boolean isPasswordSet() {
+        String pwd = getSharedPreferences("config", MODE_PRIVATE).getString("password", "");
+        if (pwd.equals("")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void getAlertDialog() {
