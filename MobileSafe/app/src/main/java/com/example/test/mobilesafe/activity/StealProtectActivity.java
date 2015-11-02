@@ -11,8 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.test.mobilesafe.R;
+import com.example.test.mobilesafe.utility.Logger;
 
 public class StealProtectActivity extends AppCompatActivity {
+    private static final String TAG = "StealProtectActivity";
     private SharedPreferences.Editor editor;
 
     @Override
@@ -22,11 +24,20 @@ public class StealProtectActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (getSharedPreferences("config", MODE_PRIVATE).getString("password", "").isEmpty()) {
+            editor = getSharedPreferences("config", MODE_PRIVATE).edit();
+            editor.putString("password", "");
+            editor.commit();
+            Logger.i(TAG,"fasdfas");
+        }
+
         editor = getSharedPreferences("config", MODE_PRIVATE).edit();
-        editor.putString("password", "");
+        editor.putString("password", "nothing");
         editor.commit();
 
-        getAlertDialog();
+        if (isPasswordSet()) {
+            getAlertDialog();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -40,9 +51,10 @@ public class StealProtectActivity extends AppCompatActivity {
 
     private boolean isPasswordSet() {
         String pwd = getSharedPreferences("config", MODE_PRIVATE).getString("password", "");
-        if (pwd.equals("")) {
+        if (pwd.equals("nothing")) {
             return false;
         } else {
+            Logger.i(TAG, pwd);
             return true;
         }
     }
