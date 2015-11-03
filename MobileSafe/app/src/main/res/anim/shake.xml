@@ -17,3 +17,6 @@
         android:interpolator="@android:anim/linear_interpolator"
         android:duration="70" />
 </set>
+
+    <!--        animation = AnimationUtils.loadAnimation(this, R.anim.shake);
+    -->
