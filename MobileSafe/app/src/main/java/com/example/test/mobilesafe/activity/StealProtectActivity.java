@@ -24,20 +24,7 @@ public class StealProtectActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (getSharedPreferences("config", MODE_PRIVATE).getString("password", "").isEmpty()) {
-            editor = getSharedPreferences("config", MODE_PRIVATE).edit();
-            editor.putString("password", "");
-            editor.commit();
-            Logger.i(TAG,"fasdfas");
-        }
-
         editor = getSharedPreferences("config", MODE_PRIVATE).edit();
-        editor.putString("password", "nothing");
-        editor.commit();
-
-        if (isPasswordSet()) {
-            getAlertDialog();
-        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -51,12 +38,35 @@ public class StealProtectActivity extends AppCompatActivity {
 
     private boolean isPasswordSet() {
         String pwd = getSharedPreferences("config", MODE_PRIVATE).getString("password", "");
-        if (pwd.equals("nothing")) {
+        if (pwd.equals("")) {
+            Logger.i(TAG, "password is " + pwd);
             return false;
         } else {
-            Logger.i(TAG, pwd);
             return true;
         }
+    }
+
+    private void setPwdDialog() {
+        editor.putString("password", "");
+        editor.commit();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.set_password);
+        View view = View.inflate(this, R.layout.dialog_content_edittext, null);
+        builder.setView(view);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.comfirm, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
     }
 
     private void getAlertDialog() {

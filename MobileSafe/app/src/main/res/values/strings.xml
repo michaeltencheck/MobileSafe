@@ -13,4 +13,7 @@
     <string name="password">请输入密码</string>
     <string name="comfirm">确定</string>
     <string name="cancel">取消</string>
+    <string name="set_password">请设置密码</string>
+    <string name="setting_pwd_text">请输入密码</string>
+    <string name="comfirm_pwd">请确认密码</string>
 </resources>
