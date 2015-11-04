@@ -2,6 +2,7 @@ package com.example.test.mobilesafe.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ public class StealProtectActivity extends AppCompatActivity {
     private static final String TAG = "StealProtectActivity";
     private SharedPreferences.Editor editor;
     private Animation animation;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class StealProtectActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         animation = AnimationUtils.loadAnimation(this, R.anim.shake);
+
+        intent = new Intent(this, MainActivity.class);
 
         editor = getSharedPreferences("config", MODE_PRIVATE).edit();
 
@@ -75,7 +79,9 @@ public class StealProtectActivity extends AppCompatActivity {
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                finish();
             }
         });
         final AlertDialog dialog = builder.create();
@@ -90,6 +96,7 @@ public class StealProtectActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),R.string.empty_pwd,Toast.LENGTH_SHORT).show();
                 }else if (!password1.equals(password2)) {
                     comfirmPwd.startAnimation(animation);
+                    comfirmPwd.setText("");
                     Toast.makeText(getApplicationContext(), R.string.different_pwd, Toast.LENGTH_SHORT).show();
                 } else {
                     editor.putString("password", password1).commit();
@@ -118,7 +125,9 @@ public class StealProtectActivity extends AppCompatActivity {
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                finish();
             }
         });
         final AlertDialog dialog = builder.create();
@@ -133,6 +142,7 @@ public class StealProtectActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.incorrect_pwd, Toast.LENGTH_SHORT).show();
                 } else if (!password1.equals(pwd)) {
                     insertPwd.startAnimation(animation);
+                    insertPwd.setText("");
                     Toast.makeText(getApplicationContext(), R.string.incorrect_pwd, Toast.LENGTH_SHORT).show();
                 } else {
                     dialog.dismiss();
