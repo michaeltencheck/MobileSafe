@@ -21,4 +21,5 @@
     <string name="pwd_setting_success">密码设置成功</string>
     <string name="incorrect_pwd">密码错误，请重新输入</string>
     <string name="correct_pwd">密码正确，欢迎欢迎，热烈欢迎</string>
+    <string name="reset_password">重置密码</string>
 </resources>

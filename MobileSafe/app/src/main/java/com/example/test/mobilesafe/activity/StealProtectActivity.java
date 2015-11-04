@@ -23,6 +23,7 @@ public class StealProtectActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private Animation animation;
     private Intent intent;
+    private View content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class StealProtectActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         animation = AnimationUtils.loadAnimation(this, R.anim.shake);
+
+        content = findViewById(R.id.ll_csp_content);
 
         intent = new Intent(this, MainActivity.class);
 
@@ -146,6 +149,7 @@ public class StealProtectActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.incorrect_pwd, Toast.LENGTH_SHORT).show();
                 } else {
                     dialog.dismiss();
+                    content.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), R.string.correct_pwd, Toast.LENGTH_SHORT).show();
                 }
             }
