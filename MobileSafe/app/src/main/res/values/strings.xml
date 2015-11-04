@@ -10,7 +10,7 @@
     <string name="steal_protect">手机防盗</string>
     <string name="info_protect">信息保护</string>
     <string name="title_activity_steal_protect">StealProtectActivity</string>
-    <string name="password">请输入密码</string>
+    <string name="password">密码确认</string>
     <string name="comfirm">确定</string>
     <string name="cancel">取消</string>
     <string name="set_password">请设置密码</string>
@@ -19,4 +19,6 @@
     <string name="empty_pwd">密码不能为空，请重新输入</string>
     <string name="different_pwd">密码不一致，请重新输入</string>
     <string name="pwd_setting_success">密码设置成功</string>
+    <string name="incorrect_pwd">密码错误，请重新输入</string>
+    <string name="correct_pwd">密码正确，欢迎欢迎，热烈欢迎</string>
 </resources>

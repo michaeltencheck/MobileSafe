@@ -52,7 +52,7 @@ public class StealProtectActivity extends AppCompatActivity {
             setPwdDialog();
         } else {
             Logger.i(TAG, "password is " + pwd);
-            getAlertDialog();
+            inputPwdDialog();
         }
     }
 
@@ -85,12 +85,6 @@ public class StealProtectActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String password1 = setPwd.getText().toString().trim();
                 String password2 = comfirmPwd.getText().toString().trim();
-                /*if (password1.equals(password2) & !(password1.isEmpty())) {
-                    editor.putString("password", password1).commit();
-                    dialog.dismiss();
-                } else {
-                    comfirmPwd.startAnimation(animation);
-                }*/
                 if (password1.isEmpty()) {
                     comfirmPwd.startAnimation(animation);
                     Toast.makeText(getApplicationContext(),R.string.empty_pwd,Toast.LENGTH_SHORT).show();
@@ -106,10 +100,13 @@ public class StealProtectActivity extends AppCompatActivity {
         });
     }
 
-    private void getAlertDialog() {
+    private void inputPwdDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.password);
+
         View view = View.inflate(this, R.layout.dialog_content_edittext, null);
+        final EditText insertPwd = (EditText) view.findViewById(R.id.et_dce_pwd);
+
         builder.setView(view);
         builder.setCancelable(false);
         builder.setPositiveButton(R.string.comfirm, new DialogInterface.OnClickListener() {
@@ -124,7 +121,25 @@ public class StealProtectActivity extends AppCompatActivity {
 
             }
         });
-        builder.create().show();
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String password1 = insertPwd.getText().toString().trim();
+                String pwd = getSharedPreferences("config", MODE_PRIVATE).getString("password", "");
+                if (password1.isEmpty()) {
+                    insertPwd.startAnimation(animation);
+                    Toast.makeText(getApplicationContext(), R.string.incorrect_pwd, Toast.LENGTH_SHORT).show();
+                } else if (!password1.equals(pwd)) {
+                    insertPwd.startAnimation(animation);
+                    Toast.makeText(getApplicationContext(), R.string.incorrect_pwd, Toast.LENGTH_SHORT).show();
+                } else {
+                    dialog.dismiss();
+                    Toast.makeText(getApplicationContext(), R.string.correct_pwd, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 }
