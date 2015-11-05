@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ import com.example.test.mobilesafe.utility.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StealProtectActivity extends AppCompatActivity {
+public class StealProtectActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private static final String TAG = "StealProtectActivity";
     private SharedPreferences.Editor editor;
     private Animation animation;
@@ -50,6 +51,7 @@ public class StealProtectActivity extends AppCompatActivity {
         listAdd(R.drawable.reset_password,R.string.reset_password);
         adapter = new FunctionInfoAdapter(this, list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
 
         content = findViewById(R.id.ll_csp_content);
 
@@ -180,4 +182,14 @@ public class StealProtectActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                setPwdDialog();
+                break;
+            default:
+                break;
+        }
+    }
 }
