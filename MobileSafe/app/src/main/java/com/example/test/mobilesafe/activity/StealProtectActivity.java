@@ -4,19 +4,27 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.test.mobilesafe.R;
+import com.example.test.mobilesafe.adapter.FunctionInfoAdapter;
+import com.example.test.mobilesafe.entity.FunctionInfo;
 import com.example.test.mobilesafe.utility.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StealProtectActivity extends AppCompatActivity {
     private static final String TAG = "StealProtectActivity";
@@ -24,6 +32,9 @@ public class StealProtectActivity extends AppCompatActivity {
     private Animation animation;
     private Intent intent;
     private View content;
+    private FunctionInfoAdapter adapter;
+    private List<FunctionInfo> list;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +44,12 @@ public class StealProtectActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         animation = AnimationUtils.loadAnimation(this, R.anim.shake);
+
+        listView = (ListView) findViewById(R.id.lv_csp_function_list);
+        list = new ArrayList<>();
+        listAdd(R.drawable.reset_password,R.string.reset_password);
+        adapter = new FunctionInfoAdapter(this, list);
+        listView.setAdapter(adapter);
 
         content = findViewById(R.id.ll_csp_content);
 
@@ -50,6 +67,13 @@ public class StealProtectActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    private void listAdd(int drawable, int str) {
+        Drawable icon = ContextCompat.getDrawable(this, drawable);
+        String name = getResources().getString(str);
+        FunctionInfo functionInfo = new FunctionInfo(icon, name);
+        list.add(functionInfo);
     }
 
     private void whetherPasswordSet() {
