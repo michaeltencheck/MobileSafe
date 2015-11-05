@@ -182,11 +182,65 @@ public class StealProtectActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
+    private void resetPwdDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.set_password);
+
+        View view = View.inflate(this, R.layout.password_reset, null);
+        final EditText pwd = (EditText) view.findViewById(R.id.input_password);
+        final EditText setPwd = (EditText) view.findViewById(R.id.set_password);
+        final EditText comfirmPwd = (EditText) view.findViewById(R.id.reset_password);
+
+        builder.setView(view);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.comfirm, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String password = getSharedPreferences("config", MODE_PRIVATE).getString("password", "");
+                String password0 = pwd.getText().toString().trim();
+                String password1 = setPwd.getText().toString().trim();
+                String password2 = comfirmPwd.getText().toString().trim();
+                if (password0.equals(password)) {
+                    if (password1.isEmpty()) {
+                        comfirmPwd.startAnimation(animation);
+                        Toast.makeText(getApplicationContext(), R.string.empty_pwd, Toast.LENGTH_SHORT).show();
+                    } else if (!password1.equals(password2)) {
+                        comfirmPwd.startAnimation(animation);
+                        comfirmPwd.setText("");
+                        Toast.makeText(getApplicationContext(), R.string.different_pwd, Toast.LENGTH_SHORT).show();
+                    } else {
+                        editor.putString("password", password1).commit();
+                        dialog.dismiss();
+                        Toast.makeText(getApplicationContext(), R.string.pwd_setting_success, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    pwd.startAnimation(animation);
+                    pwd.setText("");
+                    Toast.makeText(getApplicationContext(), R.string.incorrect_pwd, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                setPwdDialog();
+                resetPwdDialog();
                 break;
             default:
                 break;

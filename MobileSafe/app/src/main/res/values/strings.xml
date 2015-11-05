@@ -22,4 +22,6 @@
     <string name="incorrect_pwd">密码错误，请重新输入</string>
     <string name="correct_pwd">密码正确，欢迎欢迎，热烈欢迎</string>
     <string name="reset_password">重置密码</string>
+    <string name="input_original_pwd">请输入原密码</string>
+    <string name="input_new_pwd">请输入新密码</string>
 </resources>
