@@ -1,5 +1,7 @@
 package com.example.test.mobilesafe.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -9,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.FunctionInfoAdapter;
@@ -53,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                changeTitle();
+                return false;
+            }
+        });
     }
 
     private void listAdd(int drawable, int str) {
@@ -82,5 +94,30 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void changeTitle() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.change_title);
+
+        View view = View.inflate(this, R.layout.change_title, null);
+        final EditText title = (EditText) view.findViewById(R.id.et_ct_change_title);
+
+        builder.setView(view);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.comfirm, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

@@ -24,4 +24,6 @@
     <string name="reset_password">重置密码</string>
     <string name="input_original_pwd">请输入原密码</string>
     <string name="input_new_pwd">请输入新密码</string>
+    <string name="change_title">改头换面</string>
+    <string name="pls_input_your_want_name">请起名</string>
 </resources>
