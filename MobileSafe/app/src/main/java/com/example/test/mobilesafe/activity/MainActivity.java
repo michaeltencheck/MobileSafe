@@ -3,6 +3,7 @@ package com.example.test.mobilesafe.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private FunctionInfoAdapter adapter;
     private List<FunctionInfo> list;
     private ListView listView;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +41,16 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new FunctionInfoAdapter(this, list);
 
-        listAdd(R.drawable.ic_protect, R.string.steal_protect);
+/*        listAdd(R.drawable.ic_protect, R.string.steal_protect);
 
-        listAdd(R.drawable.ic_accessibility, R.string.info_protect);
+        listAdd(R.drawable.ic_accessibility, R.string.info_protect);*/
+        String line0 = getResources().getString(R.string.steal_protect);
+        String line1 = getResources().getString(R.string.info_protect);
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        String title0 = sp.getString("title0", line0);
+        String title1 = sp.getString("title1", line1);
+        listAdd(R.drawable.ic_protect, title0);
+        listAdd(R.drawable.ic_accessibility, title1);
 
         listView.setAdapter(adapter);
 
@@ -71,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
         Drawable icon = ContextCompat.getDrawable(this, drawable);
         String name = getResources().getString(str);
         FunctionInfo functionInfo = new FunctionInfo(icon, name);
+        list.add(functionInfo);
+    }
+
+    private void listAdd(int drawable, String str) {
+        Drawable icon = ContextCompat.getDrawable(this, drawable);
+        FunctionInfo functionInfo = new FunctionInfo(icon, str);
         list.add(functionInfo);
     }
 

@@ -1,7 +1,6 @@
 package com.example.test.mobilesafe.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -20,7 +19,7 @@ public class FunctionInfoAdapter extends BaseAdapter{
     private Context context;
     private List<FunctionInfo> list;
 
-    public FunctionInfoAdapter(Context context, List<FunctionInfo> list) {
+    public FunctionInfoAdapter(Context context,List<FunctionInfo> list) {
         this.context = context;
         this.list = list;
     }
