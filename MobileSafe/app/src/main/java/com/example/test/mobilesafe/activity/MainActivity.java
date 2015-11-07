@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                changeTitle();
+                changeTitle(position);
                 return false;
             }
         });
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void changeTitle() {
+    private void changeTitle(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.change_title);
 
@@ -108,7 +108,10 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.comfirm, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                String str = title.getText().toString().trim();
+                FunctionInfo info = list.get(position);
+                info.setName(str);
+                adapter.notifyDataSetChanged();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
