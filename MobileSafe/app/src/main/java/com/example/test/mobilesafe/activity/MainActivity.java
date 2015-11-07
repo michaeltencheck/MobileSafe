@@ -41,9 +41,6 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new FunctionInfoAdapter(this, list);
 
-/*        listAdd(R.drawable.ic_protect, R.string.steal_protect);
-
-        listAdd(R.drawable.ic_accessibility, R.string.info_protect);*/
         String line0 = getResources().getString(R.string.steal_protect);
         String line1 = getResources().getString(R.string.info_protect);
         sp = getSharedPreferences("config", MODE_PRIVATE);
@@ -127,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 FunctionInfo info = list.get(position);
                 info.setName(str);
                 adapter.notifyDataSetChanged();
+                sp.edit().putString("title" + position, str).commit();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
