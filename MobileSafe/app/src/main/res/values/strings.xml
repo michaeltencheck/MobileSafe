@@ -26,4 +26,5 @@
     <string name="input_new_pwd">请输入新密码</string>
     <string name="change_title">改头换面</string>
     <string name="pls_input_your_want_name">请起名</string>
+    <string name="reset_title">重置名称</string>
 </resources>

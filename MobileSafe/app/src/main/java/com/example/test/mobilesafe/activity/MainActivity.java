@@ -41,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new FunctionInfoAdapter(this, list);
 
-        String line0 = getResources().getString(R.string.steal_protect);
+        final String line0 = getResources().getString(R.string.steal_protect);
         String line1 = getResources().getString(R.string.info_protect);
+        String reset = getResources().getString(R.string.reset_title);
         sp = getSharedPreferences("config", MODE_PRIVATE);
         String title0 = sp.getString("title0", line0);
         String title1 = sp.getString("title1", line1);
         listAdd(R.drawable.ic_protect, title0);
         listAdd(R.drawable.ic_accessibility, title1);
+        listAdd(R.drawable.reset_password, reset);
 
         listView.setAdapter(adapter);
 
@@ -67,8 +69,12 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                changeTitle(position);
-                return false;
+                if (position != (list.size() - 1)) {
+                    changeTitle(position);
+                    return true;
+                } else {
+                    return false;
+                }
             }
         });
     }
