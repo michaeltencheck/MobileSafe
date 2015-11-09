@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private List<FunctionInfo> list;
     private ListView listView;
     private SharedPreferences sp;
+    private String line0, line1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new FunctionInfoAdapter(this, list);
 
-        final String line0 = getResources().getString(R.string.steal_protect);
-        String line1 = getResources().getString(R.string.info_protect);
+        line0 = getResources().getString(R.string.steal_protect);
+        line1 = getResources().getString(R.string.info_protect);
         String reset = getResources().getString(R.string.reset_title);
         sp = getSharedPreferences("config", MODE_PRIVATE);
         String title0 = sp.getString("title0", line0);
@@ -59,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         startActivity(intent0);
+                        break;
+                    case 2:
+                        sp.edit().putString("title0", line0).commit();
+                        sp.edit().putString("title1", line1).commit();
+                        list.get(0).setName(line0);
+                        list.get(1).setName(line1);
+                        adapter.notifyDataSetChanged();
                         break;
                     default:
                         break;
