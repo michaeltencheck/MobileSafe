@@ -48,6 +48,7 @@ public class StealProtectActivity extends AppCompatActivity implements AdapterVi
 
         listView = (ListView) findViewById(R.id.lv_csp_function_list);
         list = new ArrayList<>();
+        listAdd(R.drawable.call_protect,R.string.call_protect);
         listAdd(R.drawable.reset_password,R.string.reset_password);
         adapter = new FunctionInfoAdapter(this, list);
         listView.setAdapter(adapter);
