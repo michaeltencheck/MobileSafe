@@ -241,6 +241,8 @@ public class StealProtectActivity extends AppCompatActivity implements AdapterVi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
+                break;
+            case 1:
                 resetPwdDialog();
                 break;
             default:
