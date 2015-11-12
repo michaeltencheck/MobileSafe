@@ -28,4 +28,5 @@
     <string name="pls_input_your_want_name">请起名</string>
     <string name="reset_title">重置名称</string>
     <string name="call_protect">电话防盗</string>
+    <string name="status_close">关闭</string>
 </resources>

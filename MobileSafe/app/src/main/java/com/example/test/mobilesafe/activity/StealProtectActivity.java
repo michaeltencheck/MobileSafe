@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.FunctionInfoAdapter;
+import com.example.test.mobilesafe.adapter.StealProtectAdapter;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 import com.example.test.mobilesafe.utility.Logger;
 
@@ -33,7 +34,7 @@ public class StealProtectActivity extends AppCompatActivity implements AdapterVi
     private Animation animation;
     private Intent intent;
     private View content;
-    private FunctionInfoAdapter adapter;
+    private StealProtectAdapter adapter;
     private List<FunctionInfo> list;
     private ListView listView;
 
@@ -50,7 +51,7 @@ public class StealProtectActivity extends AppCompatActivity implements AdapterVi
         list = new ArrayList<>();
         listAdd(R.drawable.call_protect,R.string.call_protect);
         listAdd(R.drawable.reset_password,R.string.reset_password);
-        adapter = new FunctionInfoAdapter(this, list);
+        adapter = new StealProtectAdapter(this, list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
