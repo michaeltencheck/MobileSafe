@@ -56,6 +56,9 @@ public class StealProtectAdapter extends BaseAdapter{
         }
         viewholder.imageView.setImageDrawable(list.get(position).getDrawable());
         viewholder.textView.setText(list.get(position).getName());
+        if (position == list.size() - 1) {
+            viewholder.status.setVisibility(View.INVISIBLE);
+        }
         return view;
     }
 
