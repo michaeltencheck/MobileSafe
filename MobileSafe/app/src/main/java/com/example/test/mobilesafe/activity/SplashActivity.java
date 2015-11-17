@@ -47,6 +47,7 @@ public class SplashActivity extends AppCompatActivity {
                     break;
                 case GETUPDATEINFO_FAIL:
                     finish();
+                    Logger.i(TAG,"fail");
                     startActivity(intent);
                     break;
                 default:
@@ -58,7 +59,7 @@ public class SplashActivity extends AppCompatActivity {
     private void versionCheck() {
         if (versionName.equals(updateInfo.getVersion()) || "0".equals(updateInfo.getVersion())) {
             try {
-                Thread.sleep(2222);
+                Thread.sleep(5555);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -190,6 +191,7 @@ public class SplashActivity extends AppCompatActivity {
                     handler.sendEmptyMessage(GETUPDATEINFO_SUCCESS);
                 } catch (Exception e) {
                     handler.sendEmptyMessage(GETUPDATEINFO_FAIL);
+                    Logger.i(TAG,"fail to get info");
                     e.printStackTrace();
                 }
             }
