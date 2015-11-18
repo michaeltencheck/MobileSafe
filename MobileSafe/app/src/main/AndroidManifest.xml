@@ -37,6 +37,11 @@
                 <action android:name="android.intent.action.AIRPLANE_MODE" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".activity.InfoProtectActivity"
+            android:label="@string/title_activity_info_protect"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

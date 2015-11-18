@@ -37,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.lv_am_function_list);
 
+
         final Intent intent0 = new Intent(this, StealProtectActivity.class);
+        final Intent intent1 = new Intent(this, InfoProtectActivity.class);
+
 
         list = new ArrayList<>();
         adapter = new FunctionInfoAdapter(this, list);
@@ -63,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         startActivity(intent0);
+                        break;
+                    case 1:
+                        startActivity(intent1);
                         break;
                     case 3:
                         sp.edit().putString("title0", line0).commit();
