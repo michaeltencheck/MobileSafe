@@ -41,6 +41,10 @@
         <activity
             android:name=".activity.InfoProtectActivity"
             android:label="@string/title_activity_info_protect"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.VirusKillerActivity"
+            android:label="@string/title_activity_virus_killer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
