@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private List<FunctionInfo> list;
     private ListView listView;
     private SharedPreferences sp;
-    private String line0, line1, line2;
+    private String line0, line1, line2, line3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +49,19 @@ public class MainActivity extends AppCompatActivity {
         line0 = getResources().getString(R.string.steal_protect);
         line1 = getResources().getString(R.string.info_protect);
         line2 = getResources().getString(R.string.kill_virus);
+        line3 = getResources().getString(R.string.app_manager);
+
         String reset = getResources().getString(R.string.reset_title);
+
         sp = getSharedPreferences("config", MODE_PRIVATE);
         String title0 = sp.getString("title0", line0);
         String title1 = sp.getString("title1", line1);
         String title2 = sp.getString("title2", line2);
+        String title3 = sp.getString("title3", line3);
         listAdd(R.drawable.ic_protect, title0);
         listAdd(R.drawable.ic_accessibility, title1);
         listAdd(R.drawable.ic_kill_virus_24dp, title2);
+        listAdd(R.drawable.app_manager, title3);
         listAdd(R.drawable.reset_password, reset);
 
         listView.setAdapter(adapter);
@@ -74,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         startActivity(intent2);
                         break;
-                    case 3:
+                    case 4:
                         sp.edit().putString("title0", line0).commit();
                         sp.edit().putString("title1", line1).commit();
                         list.get(0).setName(line0);
