@@ -20,10 +20,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.test.mobilesafe.R;
-import com.example.test.mobilesafe.adapter.FunctionInfoAdapter;
 import com.example.test.mobilesafe.adapter.StealProtectAdapter;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 import com.example.test.mobilesafe.utility.Logger;
+import com.example.test.mobilesafe.utility.MD5Converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +130,8 @@ public class StealProtectActivity extends AppCompatActivity implements AdapterVi
                     comfirmPwd.setText("");
                     Toast.makeText(getApplicationContext(), R.string.different_pwd, Toast.LENGTH_SHORT).show();
                 } else {
-                    editor.putString("password", password1).commit();
+                    String password = MD5Converter.MD5Encoding(password1);
+                    editor.putString("password", password).commit();
                     dialog.dismiss();
                     Toast.makeText(getApplicationContext(), R.string.pwd_setting_success, Toast.LENGTH_SHORT).show();
                 }
@@ -166,7 +167,7 @@ public class StealProtectActivity extends AppCompatActivity implements AdapterVi
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String password1 = insertPwd.getText().toString().trim();
+                String password1 = MD5Converter.MD5Encoding(insertPwd.getText().toString().trim());
                 String pwd = getSharedPreferences("config", MODE_PRIVATE).getString("password", "");
                 if (password1.isEmpty()) {
                     insertPwd.startAnimation(animation);
