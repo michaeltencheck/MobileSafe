@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         startActivity(intent2);
                         break;
+                    case 3:
+                        break;
                     case 4:
                         sp.edit().putString("title0", line0).commit();
                         sp.edit().putString("title1", line1).commit();
