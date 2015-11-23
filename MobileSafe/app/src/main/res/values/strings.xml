@@ -33,4 +33,5 @@
     <string name="title_activity_info_protect">InfoProtectActivity</string>
     <string name="title_activity_virus_killer">VirusKillerActivity</string>
     <string name="app_manager">程序管理</string>
+    <string name="tel_query">来电查询</string>
 </resources>
