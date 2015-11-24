@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         final Intent intent0 = new Intent(this, StealProtectActivity.class);
         final Intent intent1 = new Intent(this, InfoProtectActivity.class);
         final Intent intent2 = new Intent(this, VirusKillerActivity.class);
+        final Intent intent4 = new Intent(this, TelQueryActivity.class);
 
 
         list = new ArrayList<>();
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         break;
                     case 4:
+                        startActivity(intent4);
                         break;
                     case 5:
                         sp.edit().putString("title0", line0).commit();
