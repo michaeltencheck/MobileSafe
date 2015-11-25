@@ -12,4 +12,11 @@
     tools:context="com.example.test.mobilesafe.activity.TelQueryActivity"
     tools:showIn="@layout/activity_tel_query">
 
+    <ListView
+        android:id="@+id/lv_tqa_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
 </RelativeLayout>
