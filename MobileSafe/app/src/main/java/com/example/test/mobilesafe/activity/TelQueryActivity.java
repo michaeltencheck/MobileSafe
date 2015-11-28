@@ -8,14 +8,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
+import com.example.test.mobilesafe.adapter.TelQueryInfoAdapter;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 
 import java.util.List;
 
 public class TelQueryActivity extends AppCompatActivity {
     private List<FunctionInfo> list;
+    private TelQueryInfoAdapter adapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,10 @@ public class TelQueryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tel_query);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        listView = (ListView) findViewById(R.id.lv_tqa_list);
+        adapter = new TelQueryInfoAdapter(this, list);
+        listView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
