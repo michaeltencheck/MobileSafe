@@ -35,4 +35,5 @@
     <string name="app_manager">程序管理</string>
     <string name="tel_query">来电查询</string>
     <string name="title_activity_tel_query">TelQueryActivity</string>
+    <string name="tel_location">来电地址</string>
 </resources>

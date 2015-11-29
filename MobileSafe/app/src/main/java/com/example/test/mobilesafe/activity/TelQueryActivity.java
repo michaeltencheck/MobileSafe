@@ -14,6 +14,7 @@ import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.TelQueryInfoAdapter;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TelQueryActivity extends AppCompatActivity {
@@ -29,8 +30,11 @@ public class TelQueryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         listView = (ListView) findViewById(R.id.lv_tqa_list);
+        list = new ArrayList<>();
         adapter = new TelQueryInfoAdapter(this, list);
         listView.setAdapter(adapter);
+
+        listAdd(R.drawable.ic_my_location_24dp,R.string.tel_location);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
