@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
@@ -17,7 +18,7 @@ import com.example.test.mobilesafe.entity.FunctionInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelQueryActivity extends AppCompatActivity {
+public class TelQueryActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private List<FunctionInfo> list;
     private TelQueryInfoAdapter adapter;
     private ListView listView;
@@ -34,7 +35,9 @@ public class TelQueryActivity extends AppCompatActivity {
         adapter = new TelQueryInfoAdapter(this, list);
         listView.setAdapter(adapter);
 
-        listAdd(R.drawable.ic_my_location_24dp,R.string.tel_location);
+        listView.setOnItemClickListener(this);
+
+        listAdd(R.drawable.ic_my_location_24dp, R.string.tel_location);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,4 +62,13 @@ public class TelQueryActivity extends AppCompatActivity {
         list.add(functionInfo);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                break;
+            default:
+                break;
+        }
+    }
 }
