@@ -49,6 +49,10 @@
         <activity
             android:name=".activity.TelQueryActivity"
             android:label="@string/title_activity_tel_query"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.QueryNumberActivity"
+            android:label="@string/title_activity_query_number"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

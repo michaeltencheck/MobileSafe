@@ -1,5 +1,6 @@
 package com.example.test.mobilesafe.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ public class TelQueryActivity extends AppCompatActivity implements AdapterView.O
     private List<FunctionInfo> list;
     private TelQueryInfoAdapter adapter;
     private ListView listView;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class TelQueryActivity extends AppCompatActivity implements AdapterView.O
         list = new ArrayList<>();
         adapter = new TelQueryInfoAdapter(this, list);
         listView.setAdapter(adapter);
+
+        intent = new Intent(this, QueryNumberActivity.class);
 
         listView.setOnItemClickListener(this);
 
@@ -66,6 +70,7 @@ public class TelQueryActivity extends AppCompatActivity implements AdapterView.O
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
+                startActivity(intent);
                 break;
             default:
                 break;

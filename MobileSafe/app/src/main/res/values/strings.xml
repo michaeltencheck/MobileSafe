@@ -36,4 +36,5 @@
     <string name="tel_query">来电查询</string>
     <string name="title_activity_tel_query">TelQueryActivity</string>
     <string name="tel_location">来电地址</string>
+    <string name="title_activity_query_number">QueryNumberActivity</string>
 </resources>
