@@ -12,4 +12,24 @@
     tools:context="com.example.test.mobilesafe.activity.QueryNumberActivity"
     tools:showIn="@layout/activity_query_number">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/et_query_for_address"
+            android:hint="@string/pls_input_tel_number"
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:text="@string/query_address"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
 </RelativeLayout>
