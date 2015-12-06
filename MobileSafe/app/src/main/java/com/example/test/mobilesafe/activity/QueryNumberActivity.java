@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
 
 public class QueryNumberActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
                         .setAction("Action", null).show();
             }
         });
+
+        listView = (ListView) findViewById(R.id.lv_qna_listview);
     }
 
     @Override
