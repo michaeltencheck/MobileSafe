@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QueryNumberActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
@@ -37,6 +38,8 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         });
 
         listView = (ListView) findViewById(R.id.lv_qna_listview);
+        list = new ArrayList<>();
+        listAdd(R.drawable.ic_aspect_ratio_24dp,R.string.show_place);
     }
 
     @Override

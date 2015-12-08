@@ -39,4 +39,5 @@
     <string name="title_activity_query_number">QueryNumberActivity</string>
     <string name="query_address">归属地查询</string>
     <string name="pls_input_tel_number">请输入号码</string>
+    <string name="show_place">显示位置</string>
 </resources>
