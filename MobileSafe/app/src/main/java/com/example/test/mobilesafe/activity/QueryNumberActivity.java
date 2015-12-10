@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
+import com.example.test.mobilesafe.adapter.QueryNumberAdapter;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.List;
 public class QueryNumberActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private ListView listView;
     private List<FunctionInfo> list;
+    private QueryNumberAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         listView = (ListView) findViewById(R.id.lv_qna_listview);
         list = new ArrayList<>();
         listAdd(R.drawable.ic_aspect_ratio_24dp,R.string.show_place);
+        adapter = new QueryNumberAdapter(this, list);
+        listView.setAdapter(adapter);
     }
 
     @Override
