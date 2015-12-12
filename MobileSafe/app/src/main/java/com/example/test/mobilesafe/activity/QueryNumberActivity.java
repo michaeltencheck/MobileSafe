@@ -2,6 +2,7 @@ package com.example.test.mobilesafe.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,7 @@ import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.QueryNumberAdapter;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,9 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     private ListView listView;
     private List<FunctionInfo> list;
     private QueryNumberAdapter adapter;
+    private File file;
+    private String path;
+    private String state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,14 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         listAdd(R.drawable.ic_aspect_ratio_24dp,R.string.show_place);
         adapter = new QueryNumberAdapter(this, list);
         listView.setAdapter(adapter);
+
+        state = Environment.getExternalStorageState();
+
+        if (state.equals(Environment.MEDIA_MOUNTED)) {
+            path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/antivirus.db";
+        } else {
+            path = this.getFilesDir() + "/antivirus.db";
+        }
     }
 
     @Override
