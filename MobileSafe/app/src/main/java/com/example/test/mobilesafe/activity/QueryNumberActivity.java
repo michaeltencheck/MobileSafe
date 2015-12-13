@@ -57,6 +57,11 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         } else {
             path = this.getFilesDir() + "/antivirus.db";
         }
+
+        file = new File(path);
+        if (file.exists()) {
+            
+        }
     }
 
     @Override
