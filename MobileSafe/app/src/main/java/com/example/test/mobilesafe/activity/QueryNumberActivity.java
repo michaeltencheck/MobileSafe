@@ -1,5 +1,6 @@
 package com.example.test.mobilesafe.activity;
 
+import android.app.ProgressDialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,8 +16,10 @@ import android.widget.ListView;
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.QueryNumberAdapter;
 import com.example.test.mobilesafe.entity.FunctionInfo;
+import com.example.test.mobilesafe.utility.Downloader;
 
 import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,8 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     private File file;
     private String path;
     private String state;
+    private String website;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,7 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         listView.setAdapter(adapter);
 
         state = Environment.getExternalStorageState();
+        progressDialog = new ProgressDialog(this);
 
         if (state.equals(Environment.MEDIA_MOUNTED)) {
             path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/antivirus.db";
@@ -59,8 +65,14 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         }
 
         file = new File(path);
-        if (file.exists()) {
-            
+        if (!file.exists()) {
+            try {
+                progressDialog.show();
+                Downloader.downloadFile(website, path, progressDialog);
+                progressDialog.dismiss();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
