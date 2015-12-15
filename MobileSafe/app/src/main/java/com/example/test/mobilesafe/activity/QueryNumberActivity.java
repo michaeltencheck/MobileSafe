@@ -66,13 +66,13 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
 
         file = new File(path);
         if (!file.exists()) {
+            progressDialog.show();
             try {
-                progressDialog.show();
                 Downloader.downloadFile(website, path, progressDialog);
-                progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            progressDialog.dismiss();
         }
     }
 
