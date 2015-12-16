@@ -57,23 +57,33 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
 
         state = Environment.getExternalStorageState();
         progressDialog = new ProgressDialog(this);
+        website = "http://192.168.1.116:8080/address.db";
 
         if (state.equals(Environment.MEDIA_MOUNTED)) {
-            path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/antivirus.db";
+            path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/address.db";
         } else {
-            path = this.getFilesDir() + "/antivirus.db";
+            path = this.getFilesDir() + "/address.db";
         }
 
         file = new File(path);
         if (!file.exists()) {
             progressDialog.show();
-            try {
-                Downloader.downloadFile(website, path, progressDialog);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            downloadBb();
             progressDialog.dismiss();
         }
+    }
+
+    public void downloadBb() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Downloader.downloadFile(website, path, progressDialog);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override
