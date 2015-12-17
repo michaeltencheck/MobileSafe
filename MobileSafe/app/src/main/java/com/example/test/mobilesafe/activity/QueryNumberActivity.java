@@ -30,7 +30,7 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     private File file;
     private String path;
     private String state;
-    private String website;
+    private String website, website1;
     private ProgressDialog progressDialog;
 
     @Override
@@ -57,7 +57,10 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
 
         state = Environment.getExternalStorageState();
         progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+
         website = "http://192.168.1.116:8080/address.db";
+        website1 = "http://192.168.1.116:8080/update.xml";
 
         if (state.equals(Environment.MEDIA_MOUNTED)) {
             path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/address.db";
@@ -67,18 +70,18 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
 
         file = new File(path);
         if (!file.exists()) {
-            progressDialog.show();
             downloadBb();
-            progressDialog.dismiss();
         }
     }
 
     public void downloadBb() {
+        progressDialog.show();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Downloader.downloadFile(website, path, progressDialog);
+                    file = Downloader.downloadFile(website, path, progressDialog);
+                    progressDialog.dismiss();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
