@@ -30,7 +30,7 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     private File file;
     private String path;
     private String state;
-    private String website, website1;
+    private String website;
     private ProgressDialog progressDialog;
 
     @Override
@@ -58,9 +58,9 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         state = Environment.getExternalStorageState();
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setMessage("正在下载来电数据库，请稍候");
 
         website = "http://192.168.1.116:8080/address.db";
-        website1 = "http://192.168.1.116:8080/update.xml";
 
         if (state.equals(Environment.MEDIA_MOUNTED)) {
             path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/address.db";
