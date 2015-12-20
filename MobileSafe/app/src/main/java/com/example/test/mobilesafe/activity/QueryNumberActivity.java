@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.QueryNumberAdapter;
+import com.example.test.mobilesafe.db.TelNumberLocationDBHelper;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 import com.example.test.mobilesafe.utility.Downloader;
 
@@ -32,6 +33,7 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     private String state;
     private String website;
     private ProgressDialog progressDialog;
+    private TelNumberLocationDBHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,8 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         if (!file.exists()) {
             downloadBb();
         }
+
+
     }
 
     public void downloadBb() {
