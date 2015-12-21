@@ -1,6 +1,7 @@
 package com.example.test.mobilesafe.db;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
@@ -16,7 +17,15 @@ public class TelNumberLocationDAO {
     }
 
     public String findLocation(String number) {
+        String address = null;
         SQLiteDatabase database = helper.getReadableDatabase();
-        return null;
+        if (database.isOpen()) {
+            Cursor cursor = database.rawQuery("", new String[]{number});
+            if (cursor.moveToNext()) {
+                address = cursor.getString(cursor.getColumnIndex(""));
+            }
+            cursor.close();
+        }
+        return address;
     }
 }
