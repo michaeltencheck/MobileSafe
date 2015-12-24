@@ -11,10 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.QueryNumberAdapter;
+import com.example.test.mobilesafe.db.AddressService;
 import com.example.test.mobilesafe.db.TelNumberLocationDBHelper;
 import com.example.test.mobilesafe.entity.FunctionInfo;
 import com.example.test.mobilesafe.utility.Downloader;
@@ -33,7 +36,9 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     private String state;
     private String website;
     private ProgressDialog progressDialog;
-    private TelNumberLocationDBHelper helper;
+    private EditText editText;
+    private String address, number;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,17 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         listAdd(R.drawable.ic_aspect_ratio_24dp,R.string.show_place);
         adapter = new QueryNumberAdapter(this, list);
         listView.setAdapter(adapter);
+
+        editText = (EditText) findViewById(R.id.et_query_for_address);
+        button = (Button) findViewById(R.id.bt_query_address);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                number = editText.getText().toString().trim();
+                address = AddressService.getAddress(number);
+                editText.setText(address);
+            }
+        });
 
         state = Environment.getExternalStorageState();
         progressDialog = new ProgressDialog(this);
