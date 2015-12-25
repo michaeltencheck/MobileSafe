@@ -29,6 +29,13 @@ public class AddressService {
                 }
                 cursor.close();
             }
+        }else switch (len) {
+            case 7:
+                address = "本地号码";
+                break;
+            case 8:
+                address = "本地号码";
+                break;
         }
         Logger.i("AddressService","4");
         return address;
