@@ -36,6 +36,20 @@ public class AddressService {
             case 8:
                 address = "本地号码";
                 break;
+            case 10:
+                String area = number.substring(0, 3);
+                SQLiteDatabase database = AddressDao.getDb(path);
+                if (database.isOpen()) {
+                    /*limit 1表示只取所有结果中的一条*/
+                    Cursor cursor = database.rawQuery("select city from info where area=? limit 1",
+                            new String[]{area});
+                    if (cursor.moveToNext()) {
+                        address = cursor.getString(0);
+                        cursor.close();
+                        database.close();
+                    }
+                }
+                break;
         }
         Logger.i("AddressService","4");
         return address;
