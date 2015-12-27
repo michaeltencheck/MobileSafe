@@ -50,6 +50,33 @@ public class AddressService {
                     }
                 }
                 break;
+            case 11:
+                String area113 = number.substring(0, 3);
+                String area114 = number.substring(0, 4);
+                String area117 = number.substring(0, 7);
+                SQLiteDatabase database11 = AddressDao.getDb(path);
+                if (database11.isOpen()) {
+                    Cursor cursor113 = database11.rawQuery("select city from info where area=? limit 1",
+                            new String[]{area113});
+                    Cursor cursor114 = database11.rawQuery("select city from info where area=? limit 1",
+                            new String[]{area114});
+                    Cursor cursor117 = database11.rawQuery("select city from info where mobileprefix=?",
+                            new String[]{area117});
+                    if (cursor113.moveToNext()) {
+                        address = cursor113.getString(0);
+                        cursor113.close();
+                        database11.close();
+                    }else if (cursor114.moveToNext()) {
+                        address = cursor114.getString(0);
+                        cursor114.close();
+                        database11.close();
+                    }else if (cursor117.moveToNext()) {
+                        address = cursor117.getString(0);
+                        cursor117.close();
+                        database11.close();
+                    }
+                }
+                break;
         }
         Logger.i("AddressService","4");
         return address;
