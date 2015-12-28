@@ -77,6 +77,21 @@ public class AddressService {
                     }
                 }
                 break;
+            case 12:
+                String area12 = number.substring(0, 4);
+                SQLiteDatabase database12 = AddressDao.getDb(path);
+                if (database12.isOpen()) {
+                    Cursor cursor12 = database12.rawQuery("select city from info where area=? limit 1",
+                            new String[]{area12});
+                    if (cursor12.moveToNext()) {
+                        address = cursor12.getString(0);
+                        cursor12.close();
+                        database12.close();
+                    }
+                }
+                break;
+            default:
+                break;
         }
         Logger.i("AddressService","4");
         return address;
