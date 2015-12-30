@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.QueryNumberAdapter;
@@ -39,6 +40,7 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     private EditText editText;
     private String address, number;
     private Button button;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +65,14 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         listView.setAdapter(adapter);
 
         editText = (EditText) findViewById(R.id.et_query_for_address);
+        textView = (TextView) findViewById(R.id.tv_show_location);
         button = (Button) findViewById(R.id.bt_query_address);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 number = editText.getText().toString().trim();
                 address = AddressService.getAddress(number);
-                editText.setText(address);
+                textView.setText(address);
             }
         });
 
