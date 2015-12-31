@@ -35,12 +35,19 @@
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="35dp">
 
         <TextView
             android:id="@+id/tv_show_location"
             android:textAppearance="@android:style/TextAppearance.Medium"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <ImageView
+            android:src="@drawable/solidline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
