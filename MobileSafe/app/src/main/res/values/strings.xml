@@ -37,7 +37,8 @@
     <string name="title_activity_tel_query">TelQueryActivity</string>
     <string name="tel_location">来电地址</string>
     <string name="title_activity_query_number">QueryNumberActivity</string>
-    <string name="query_address">归属地查询</string>
+    <string name="query_address">查询</string>
     <string name="pls_input_tel_number">请输入号码</string>
     <string name="show_place">显示位置</string>
+    <string name="clear_number">重置</string>
 </resources>
