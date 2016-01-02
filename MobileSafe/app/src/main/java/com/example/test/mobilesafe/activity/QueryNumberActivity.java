@@ -39,7 +39,7 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     private ProgressDialog progressDialog;
     private EditText editText;
     private String address, number;
-    private Button button;
+    private Button button,reset;
     private TextView textView;
 
     @Override
@@ -66,6 +66,7 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
 
         editText = (EditText) findViewById(R.id.et_query_for_address);
         textView = (TextView) findViewById(R.id.tv_show_location);
+
         button = (Button) findViewById(R.id.bt_query_address);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +74,15 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
                 number = editText.getText().toString().trim();
                 address = AddressService.getAddress(number);
                 textView.setText(address);
+            }
+        });
+
+        reset = (Button) findViewById(R.id.bt_clear_number);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText.setText("");
+                textView.setText("");
             }
         });
 
