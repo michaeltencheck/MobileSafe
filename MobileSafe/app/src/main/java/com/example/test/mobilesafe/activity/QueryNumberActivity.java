@@ -1,6 +1,7 @@
 package com.example.test.mobilesafe.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
@@ -126,6 +127,8 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
+                Intent intent = new Intent(this, DisplayAdjustActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

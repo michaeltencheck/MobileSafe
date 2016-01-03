@@ -41,4 +41,5 @@
     <string name="pls_input_tel_number">请输入号码</string>
     <string name="show_place">显示位置</string>
     <string name="clear_number">重置</string>
+    <string name="title_activity_display_adjust">DisplayAdjustActivity</string>
 </resources>

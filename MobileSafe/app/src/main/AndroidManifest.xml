@@ -53,6 +53,10 @@
         <activity
             android:name=".activity.QueryNumberActivity"
             android:label="@string/title_activity_query_number"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.DisplayAdjustActivity"
+            android:label="@string/title_activity_display_adjust"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
