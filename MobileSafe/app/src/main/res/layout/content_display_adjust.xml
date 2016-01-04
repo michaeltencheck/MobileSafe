@@ -12,4 +12,10 @@
     tools:context="com.example.test.mobilesafe.activity.DisplayAdjustActivity"
     tools:showIn="@layout/activity_display_adjust">
 
+    <ImageView
+        android:id="@+id/iv_display_point"
+        android:src="@drawable/ic_crop_7_5_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
