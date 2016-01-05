@@ -64,6 +64,7 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
         listAdd(R.drawable.ic_aspect_ratio_24dp,R.string.show_place);
         adapter = new QueryNumberAdapter(this, list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
 
         editText = (EditText) findViewById(R.id.et_query_for_address);
         textView = (TextView) findViewById(R.id.tv_show_location);
