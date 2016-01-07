@@ -42,4 +42,5 @@
     <string name="show_place">显示位置</string>
     <string name="clear_number">重置</string>
     <string name="title_activity_display_adjust">DisplayAdjustActivity</string>
+    <string name="drag_display">拖动选择显示位置</string>
 </resources>
