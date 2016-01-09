@@ -32,11 +32,13 @@
             <TextView
                 android:id="@+id/tv_drag"
                 android:text="@string/drag_display"
+                android:textAppearance="@android:style/TextAppearance.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:text="@string/tv_display_point"
+                android:textAppearance="@android:style/TextAppearance.Medium"
                 android:layout_below="@id/tv_drag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
