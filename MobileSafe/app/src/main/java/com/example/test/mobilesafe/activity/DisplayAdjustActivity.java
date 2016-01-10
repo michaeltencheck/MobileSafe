@@ -1,15 +1,20 @@
 package com.example.test.mobilesafe.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.example.test.mobilesafe.R;
 
 public class DisplayAdjustActivity extends AppCompatActivity {
+    private RelativeLayout relativeLayout;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,10 @@ public class DisplayAdjustActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        relativeLayout = (RelativeLayout) findViewById(R.id.rl_display_adjust);
+        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
 }
