@@ -6,12 +6,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.test.mobilesafe.R;
+import com.example.test.mobilesafe.utility.Logger;
 
 public class DisplayAdjustActivity extends AppCompatActivity {
+    private static final String TAG = "DisplayAdjustActivity";
     private RelativeLayout relativeLayout;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -35,6 +38,12 @@ public class DisplayAdjustActivity extends AppCompatActivity {
         relativeLayout = (RelativeLayout) findViewById(R.id.rl_display_adjust);
         sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
+        int lastX = sharedPreferences.getInt("last_x", 0);
+        int lastY = sharedPreferences.getInt("last_y", 0);
+
+        Logger.i(TAG, "x = " + lastX);
+        Logger.i(TAG, "y = " + lastY);
     }
 
 }
