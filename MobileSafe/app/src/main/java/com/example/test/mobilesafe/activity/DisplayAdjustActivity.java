@@ -44,6 +44,12 @@ public class DisplayAdjustActivity extends AppCompatActivity {
 
         Logger.i(TAG, "x = " + lastX);
         Logger.i(TAG, "y = " + lastY);
+
+        RelativeLayout.LayoutParams layoutParams =
+                (RelativeLayout.LayoutParams) relativeLayout.getLayoutParams();
+        layoutParams.leftMargin = lastX;
+        layoutParams.topMargin = lastY;
+        relativeLayout.setLayoutParams(layoutParams);
     }
 
 }
