@@ -7,13 +7,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.utility.Logger;
 
-public class DisplayAdjustActivity extends AppCompatActivity {
+public class DisplayAdjustActivity extends AppCompatActivity implements View.OnTouchListener{
     private static final String TAG = "DisplayAdjustActivity";
     private RelativeLayout relativeLayout;
     private SharedPreferences sharedPreferences;
@@ -50,6 +51,11 @@ public class DisplayAdjustActivity extends AppCompatActivity {
         layoutParams.leftMargin = lastX;
         layoutParams.topMargin = lastY;
         relativeLayout.setLayoutParams(layoutParams);
+        relativeLayout.setOnTouchListener(this);
     }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
+    }
 }
