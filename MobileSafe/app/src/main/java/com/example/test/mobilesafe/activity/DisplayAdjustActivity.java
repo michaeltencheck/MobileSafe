@@ -19,6 +19,16 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
     private RelativeLayout relativeLayout;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private int startX;
+    private int startY;
+    private int endX;
+    private int endY;
+    private int dx;
+    private int dy;
+    private int l;
+    private int r;
+    private int t;
+    private int b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +66,50 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        return false;
+        switch (v.getId()) {
+            case R.id.rl_display_adjust:
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        startX = (int) event.getRawX();
+                        startY = (int) event.getRawY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        endX = (int) event.getRawX();
+                        endY = (int) event.getRawY();
+                        dx = endX - startX;
+                        dy = endY - startY;
+                        l = relativeLayout.getLeft();
+                        r = relativeLayout.getRight();
+                        t = relativeLayout.getTop();
+                        b = relativeLayout.getBottom();
+
+/*                        if (t < 300) {
+                            introduction1.setVisibility(View.INVISIBLE);
+                            introduction2.setVisibility(View.VISIBLE);
+                        }else if (t > 900) {
+                            introduction1.setVisibility(View.VISIBLE);
+                            introduction2.setVisibility(View.INVISIBLE);
+                        }*/
+
+                        relativeLayout.layout(l + dx, t + dy, r + dx, b + dy);
+                        startX = endX;
+                        startY = endY;
+
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        int reX = (int) event.getX();
+                        int reY = (int) event.getY();
+                        editor.putInt("lastX", startX-reX);
+                        editor.putInt("lastY", startY-reY-28);
+                        editor.commit();
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 }
