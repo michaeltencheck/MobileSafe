@@ -29,6 +29,7 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
     private int r;
     private int t;
     private int b;
+    private int lastX, lastY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,8 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
         sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        int lastX = sharedPreferences.getInt("last_x", 0);
-        int lastY = sharedPreferences.getInt("last_y", 0);
+        lastX = sharedPreferences.getInt("last_x", 0);
+        lastY = sharedPreferences.getInt("last_y", 0);
 
         Logger.i(TAG, "x = " + lastX);
         Logger.i(TAG, "y = " + lastY);
@@ -99,8 +100,8 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
                     case MotionEvent.ACTION_UP:
                         int reX = (int) event.getX();
                         int reY = (int) event.getY();
-                        editor.putInt("lastX", startX-reX);
-                        editor.putInt("lastY", startY-reY-28);
+                        editor.putInt("last_x", startX-reX);
+                        editor.putInt("last_y", startY-reY-28);
                         editor.commit();
                         break;
                     default:
