@@ -63,6 +63,8 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
         layoutParams.topMargin = lastY;
         relativeLayout.setLayoutParams(layoutParams);
         relativeLayout.setOnTouchListener(this);
+
+
     }
 
     @Override
@@ -79,11 +81,11 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
                         endY = (int) event.getRawY();
                         dx = endX - startX;
                         dy = endY - startY;
+
                         l = relativeLayout.getLeft();
                         r = relativeLayout.getRight();
                         t = relativeLayout.getTop();
                         b = relativeLayout.getBottom();
-
 /*                        if (t < 300) {
                             introduction1.setVisibility(View.INVISIBLE);
                             introduction2.setVisibility(View.VISIBLE);
@@ -91,7 +93,6 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
                             introduction1.setVisibility(View.VISIBLE);
                             introduction2.setVisibility(View.INVISIBLE);
                         }*/
-
                         relativeLayout.layout(l + dx, t + dy, r + dx, b + dy);
                         startX = endX;
                         startY = endY;
