@@ -6,7 +6,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -19,17 +21,11 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
     private RelativeLayout relativeLayout;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private int startX;
-    private int startY;
-    private int endX;
-    private int endY;
-    private int dx;
-    private int dy;
-    private int l;
-    private int r;
-    private int t;
-    private int b;
+    private int startX, startY, endX, endY;
+    private int dx, dy;
+    private int l, r, t, b;
     private int lastX, lastY;
+    private int width, height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +60,10 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
         relativeLayout.setLayoutParams(layoutParams);
         relativeLayout.setOnTouchListener(this);
 
-
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        width = displayMetrics.widthPixels;
+        height = displayMetrics.heightPixels;
     }
 
     @Override
