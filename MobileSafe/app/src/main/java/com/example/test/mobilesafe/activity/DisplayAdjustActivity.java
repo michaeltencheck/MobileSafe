@@ -92,7 +92,7 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
                             introduction1.setVisibility(View.VISIBLE);
                             introduction2.setVisibility(View.INVISIBLE);
                         }*/
-                        if ((l + dx) > 0 & (t + dy) > 0) {
+                        if ((l + dx) > 0 & (t + dy) > 0 & (r + dx) < width & (b + dy) < height) {
                             relativeLayout.layout(l + dx, t + dy, r + dx, b + dy);
                             startX = endX;
                             startY = endY;
