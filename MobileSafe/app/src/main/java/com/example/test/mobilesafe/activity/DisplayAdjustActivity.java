@@ -104,7 +104,7 @@ public class DisplayAdjustActivity extends AppCompatActivity implements View.OnT
                     case MotionEvent.ACTION_UP:
                         int reX = (int) event.getX();
                         int reY = (int) event.getY();
-                        editor.putInt("last_x", startX - reX-30);
+                        editor.putInt("last_x", startX - 70);
                         editor.putInt("last_y", startY - reY - 90);
                         editor.commit();
                         break;
