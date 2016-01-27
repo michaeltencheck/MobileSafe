@@ -61,7 +61,10 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
 
         listView = (ListView) findViewById(R.id.lv_qna_listview);
         list = new ArrayList<>();
+
         listAdd(R.drawable.ic_aspect_ratio_24dp,R.string.show_place);
+        listAdd(R.drawable.sick,R.string.sick);
+
         adapter = new QueryNumberAdapter(this, list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
