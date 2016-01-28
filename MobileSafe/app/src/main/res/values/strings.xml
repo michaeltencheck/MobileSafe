@@ -45,4 +45,5 @@
     <string name="drag_display">拖动选择</string>
     <string name="tv_display_point">显示位置</string>
     <string name="sick">哥感冒了</string>
+    <string name="black_list">黑名单</string>
 </resources>
