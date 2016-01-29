@@ -135,6 +135,10 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
                 Intent intent = new Intent(this, DisplayAdjustActivity.class);
                 startActivity(intent);
                 break;
+            case 1:
+                break;
+            case 2:
+                break;
             default:
                 break;
         }
