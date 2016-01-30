@@ -46,4 +46,5 @@
     <string name="tv_display_point">显示位置</string>
     <string name="sick">哥感冒了</string>
     <string name="black_list">黑名单</string>
+    <string name="title_activity_black_list">BlackListActivity</string>
 </resources>
