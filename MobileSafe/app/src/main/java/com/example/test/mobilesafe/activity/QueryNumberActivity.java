@@ -138,6 +138,8 @@ public class QueryNumberActivity extends AppCompatActivity implements AdapterVie
             case 1:
                 break;
             case 2:
+                Intent intent2 = new Intent(this, BlackListActivity.class);
+                startActivity(intent2);
                 break;
             default:
                 break;
