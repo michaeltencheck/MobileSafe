@@ -24,6 +24,9 @@
         </EditText>
 
         <Button
+            android:id="@+id/bt_cbl_choose"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:text="@string/choose_number_from_contact"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
