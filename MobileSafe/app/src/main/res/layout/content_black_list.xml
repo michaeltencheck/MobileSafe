@@ -32,6 +32,9 @@
             android:layout_height="wrap_content" />
 
         <Button
+            android:id="@+id/bt_cbl_add"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:text="@string/add_number_to_black_list"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
