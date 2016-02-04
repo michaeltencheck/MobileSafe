@@ -13,6 +13,7 @@
     tools:showIn="@layout/activity_black_list">
 
     <LinearLayout
+        android:id="@+id/ll_cbl_choose_add"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
@@ -41,4 +42,12 @@
 
     </LinearLayout>
 
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/tv_cbl_black_list"
+        android:layout_below="@id/ll_cbl_choose_add"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:text="@string/black_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
