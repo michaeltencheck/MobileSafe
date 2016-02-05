@@ -50,4 +50,12 @@
         android:text="@string/black_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <ImageView
+        android:paddingTop="10dp"
+        android:id="@+id/iv_cbl_devide_line"
+        android:layout_below="@id/tv_cbl_black_list"
+        android:src="@drawable/solidline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
