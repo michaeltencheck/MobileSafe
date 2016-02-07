@@ -6,10 +6,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.test.mobilesafe.R;
 
 public class BlackListActivity extends AppCompatActivity {
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class BlackListActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        editText = (EditText) findViewById(R.id.et_cbl_input_number);
     }
 
 }

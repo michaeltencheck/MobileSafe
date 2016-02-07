@@ -19,6 +19,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/et_cbl_input_number"
             android:layout_width="0dp"
             android:layout_weight="6"
             android:layout_height="wrap_content">
