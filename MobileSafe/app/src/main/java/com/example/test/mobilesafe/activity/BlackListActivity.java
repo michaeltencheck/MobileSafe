@@ -12,6 +12,7 @@ import com.example.test.mobilesafe.R;
 
 public class BlackListActivity extends AppCompatActivity {
     private EditText editText;
+    private String number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class BlackListActivity extends AppCompatActivity {
         });
 
         editText = (EditText) findViewById(R.id.et_cbl_input_number);
+        number = editText.getText().toString().trim();
     }
 
 }
