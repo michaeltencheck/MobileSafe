@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
 
 public class BlackListActivity extends AppCompatActivity {
     private EditText editText;
     private String number;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class BlackListActivity extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.et_cbl_input_number);
         number = editText.getText().toString().trim();
+        listView = (ListView) findViewById(R.id.lv_cbl_list_view);
     }
 
 }
