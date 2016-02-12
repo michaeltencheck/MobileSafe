@@ -49,7 +49,13 @@
         android:layout_below="@id/ll_cbl_choose_add"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:text="@string/black_list"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_below="@id/ll_cbl_choose_add"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <ImageView
