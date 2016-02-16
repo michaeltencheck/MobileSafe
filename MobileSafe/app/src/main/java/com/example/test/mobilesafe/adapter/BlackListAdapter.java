@@ -1,13 +1,21 @@
 package com.example.test.mobilesafe.adapter;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.example.test.mobilesafe.entity.BlackList;
+
+import java.util.List;
 
 /**
  * Created by test on 2/15/2016.
  */
 public class BlackListAdapter extends BaseAdapter{
+    private Context context;
+    private List<BlackList> list;
+    
     @Override
     public int getCount() {
         return 0;
