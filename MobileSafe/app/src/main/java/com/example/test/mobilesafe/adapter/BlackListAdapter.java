@@ -15,7 +15,12 @@ import java.util.List;
 public class BlackListAdapter extends BaseAdapter{
     private Context context;
     private List<BlackList> list;
-    
+
+    public BlackListAdapter(Context context, List<BlackList> list) {
+        this.context = context;
+        this.list = list;
+    }
+
     @Override
     public int getCount() {
         return 0;
