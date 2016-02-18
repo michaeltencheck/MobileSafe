@@ -23,7 +23,7 @@ public class BlackListAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return 0;
+        return list.size();
     }
 
     @Override
