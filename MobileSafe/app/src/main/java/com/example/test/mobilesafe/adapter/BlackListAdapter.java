@@ -40,4 +40,8 @@ public class BlackListAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         return null;
     }
+
+    private class ViewHolder {
+        
+    }
 }
