@@ -41,7 +41,8 @@ public class BlackListAdapter extends BaseAdapter{
         return null;
     }
 
-    private class ViewHolder {
-        
+    private static class ViewHolder {
+        private String name;
+        private String tel_number;
     }
 }
