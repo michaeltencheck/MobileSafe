@@ -38,6 +38,13 @@ public class BlackListAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View view;
+        ViewHolder viewHolder;
+        if (convertView == null) {
+
+        } else {
+
+        }
         return null;
     }
 
