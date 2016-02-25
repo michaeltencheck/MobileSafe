@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/tv_ibl_name"
-        android:layout_width="0"
+        android:layout_width="0dp"
         android:layout_weight="1"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:layout_height="wrap_content" />
@@ -13,7 +13,7 @@
     <TextView
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:id="@+id/tv_ibl_number"
-        android:layout_width="0"
+        android:layout_width="0dp"
         android:layout_weight="5"
         android:layout_height="wrap_content" />
 

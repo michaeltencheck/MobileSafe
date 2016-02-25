@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.entity.BlackList;
 
 import java.util.List;
@@ -41,7 +43,11 @@ public class BlackListAdapter extends BaseAdapter{
         View view;
         ViewHolder viewHolder;
         if (convertView == null) {
-
+            view = View.inflate(context, R.layout.item_black_list, null);
+            viewHolder = new ViewHolder();
+            viewHolder.name = (TextView) view.findViewById(R.id.tv_ibl_name);
+            viewHolder.tel_number = (TextView) view.findViewById(R.id.tv_ibl_number);
+            view.setTag(viewHolder);
         } else {
 
         }
@@ -49,7 +55,7 @@ public class BlackListAdapter extends BaseAdapter{
     }
 
     private static class ViewHolder {
-        private String name;
-        private String tel_number;
+        private TextView name;
+        private TextView tel_number;
     }
 }
