@@ -49,7 +49,8 @@ public class BlackListAdapter extends BaseAdapter{
             viewHolder.tel_number = (TextView) view.findViewById(R.id.tv_ibl_number);
             view.setTag(viewHolder);
         } else {
-
+            view = convertView;
+            viewHolder = (ViewHolder) view.getTag();
         }
         return null;
     }
