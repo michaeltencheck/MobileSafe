@@ -52,7 +52,8 @@ public class BlackListAdapter extends BaseAdapter{
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
-        return null;
+        viewHolder.name.setText(list.get(position).getName());
+        return view;
     }
 
     private static class ViewHolder {
