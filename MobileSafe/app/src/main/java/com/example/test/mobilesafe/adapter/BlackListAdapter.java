@@ -53,6 +53,7 @@ public class BlackListAdapter extends BaseAdapter{
             viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.name.setText(list.get(position).getName());
+        viewHolder.tel_number.setText(list.get(position).getTel_number());
         return view;
     }
 
