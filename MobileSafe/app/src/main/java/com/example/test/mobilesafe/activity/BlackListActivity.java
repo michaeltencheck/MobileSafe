@@ -44,6 +44,7 @@ public class BlackListActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.lv_cbl_list_view);
         lists = new ArrayList<>();
         adapter = new BlackListAdapter(this, lists);
+        listView.setAdapter(adapter);
     }
 
 }
