@@ -10,11 +10,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.test.mobilesafe.R;
+import com.example.test.mobilesafe.adapter.BlackListAdapter;
+import com.example.test.mobilesafe.entity.BlackList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlackListActivity extends AppCompatActivity {
     private EditText editText;
     private String number;
     private ListView listView;
+    private BlackListAdapter adapter;
+    private List<BlackList> lists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,8 @@ public class BlackListActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.et_cbl_input_number);
         number = editText.getText().toString().trim();
         listView = (ListView) findViewById(R.id.lv_cbl_list_view);
+        lists = new ArrayList<>();
+        adapter = new BlackListAdapter(this, lists);
     }
 
 }
