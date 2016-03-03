@@ -1,8 +1,10 @@
 package com.example.test.mobilesafe.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ListView;
 import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.BlackListAdapter;
 import com.example.test.mobilesafe.entity.BlackList;
+import com.example.test.mobilesafe.entity.FunctionInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,11 @@ public class BlackListActivity extends AppCompatActivity {
         lists = new ArrayList<>();
         adapter = new BlackListAdapter(this, lists);
         listView.setAdapter(adapter);
+    }
+
+    private void listAdd(String name, String tel_number) {
+        BlackList blackList = new BlackList(name, tel_number);
+        lists.add(blackList);
     }
 
 }
