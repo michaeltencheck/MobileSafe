@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -25,6 +26,7 @@ public class BlackListActivity extends AppCompatActivity {
     private ListView listView;
     private BlackListAdapter adapter;
     private List<BlackList> lists;
+    private Button add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class BlackListActivity extends AppCompatActivity {
         });
 
         editText = (EditText) findViewById(R.id.et_cbl_input_number);
+        add = (Button) findViewById(R.id.bt_cbl_add);
         number = editText.getText().toString().trim();
         listView = (ListView) findViewById(R.id.lv_cbl_list_view);
         lists = new ArrayList<>();
