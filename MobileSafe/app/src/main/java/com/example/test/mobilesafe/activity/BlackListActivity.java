@@ -45,12 +45,19 @@ public class BlackListActivity extends AppCompatActivity {
         });
 
         editText = (EditText) findViewById(R.id.et_cbl_input_number);
-        add = (Button) findViewById(R.id.bt_cbl_add);
         number = editText.getText().toString().trim();
         listView = (ListView) findViewById(R.id.lv_cbl_list_view);
         lists = new ArrayList<>();
         adapter = new BlackListAdapter(this, lists);
         listView.setAdapter(adapter);
+
+        add = (Button) findViewById(R.id.bt_cbl_add);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
     }
 
     private void listAdd(String name, String tel_number) {
