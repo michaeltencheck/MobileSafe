@@ -16,6 +16,7 @@ import com.example.test.mobilesafe.R;
 import com.example.test.mobilesafe.adapter.BlackListAdapter;
 import com.example.test.mobilesafe.entity.BlackList;
 import com.example.test.mobilesafe.entity.FunctionInfo;
+import com.example.test.mobilesafe.utility.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,11 @@ public class BlackListActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                if (number != "") {
+                    listAdd("unknown", number);
+                    Logger.i("BlackListActivity", number);
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
     }
