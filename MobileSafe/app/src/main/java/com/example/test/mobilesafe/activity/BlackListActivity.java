@@ -56,7 +56,7 @@ public class BlackListActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (number != "") {
+                if (number != "" & number != null) {
                     listAdd("unknown", number);
                     Logger.i("BlackListActivity", number);
                     adapter.notifyDataSetChanged();
