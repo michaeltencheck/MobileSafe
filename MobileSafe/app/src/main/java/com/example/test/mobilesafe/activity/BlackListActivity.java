@@ -46,7 +46,6 @@ public class BlackListActivity extends AppCompatActivity {
         });
 
         editText = (EditText) findViewById(R.id.et_cbl_input_number);
-        number = editText.getText().toString().trim();
         listView = (ListView) findViewById(R.id.lv_cbl_list_view);
         lists = new ArrayList<>();
         adapter = new BlackListAdapter(this, lists);
@@ -56,6 +55,7 @@ public class BlackListActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                number = editText.getText().toString().trim();
                 if (number != "" & number != null) {
                     listAdd("unknown", number);
                     Logger.i("BlackListActivity", number);
