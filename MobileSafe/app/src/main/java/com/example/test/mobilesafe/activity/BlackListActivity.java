@@ -59,6 +59,7 @@ public class BlackListActivity extends AppCompatActivity {
                 if (number != "" & number != null) {
                     listAdd("unknown", number);
                     Logger.i("BlackListActivity", number);
+                    /*正在考虑怎么存储lists，使得每添加一个blacklist都会一直存在*/
                     adapter.notifyDataSetChanged();
                 }
             }
