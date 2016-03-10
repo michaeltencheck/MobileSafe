@@ -28,6 +28,7 @@ public class BlackListActivity extends AppCompatActivity {
     private BlackListAdapter adapter;
     private List<BlackList> lists;
     private Button add;
+    private Button choose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
