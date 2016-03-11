@@ -53,6 +53,7 @@ public class BlackListActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         add = (Button) findViewById(R.id.bt_cbl_add);
+        choose = (Button) findViewById(R.id.bt_cbl_choose);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
