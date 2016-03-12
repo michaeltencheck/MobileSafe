@@ -54,6 +54,13 @@ public class BlackListActivity extends AppCompatActivity {
 
         add = (Button) findViewById(R.id.bt_cbl_add);
         choose = (Button) findViewById(R.id.bt_cbl_choose);
+
+        choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
