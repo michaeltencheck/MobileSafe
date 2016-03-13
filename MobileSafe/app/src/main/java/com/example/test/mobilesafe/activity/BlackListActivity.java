@@ -1,5 +1,6 @@
 package com.example.test.mobilesafe.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +26,7 @@ public class BlackListActivity extends AppCompatActivity {
     private EditText editText;
     private String number;
     private ListView listView;
+    private Intent intent;
     private BlackListAdapter adapter;
     private List<BlackList> lists;
     private Button add;
@@ -58,7 +60,6 @@ public class BlackListActivity extends AppCompatActivity {
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
             }
         });
         add.setOnClickListener(new View.OnClickListener() {
