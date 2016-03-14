@@ -50,4 +50,5 @@
     <string name="choose_number_from_contact">选择</string>
     <string name="add_number_to_black_list">添加</string>
     <string name="bt_cbl_remove">移除</string>
+    <string name="title_activity_contact_list">ContactListActivity</string>
 </resources>
