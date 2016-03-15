@@ -48,6 +48,8 @@ public class BlackListActivity extends AppCompatActivity {
             }
         });
 
+        intent = new Intent(this, ContactListActivity.class);
+
         editText = (EditText) findViewById(R.id.et_cbl_input_number);
         listView = (ListView) findViewById(R.id.lv_cbl_list_view);
         lists = new ArrayList<>();
@@ -62,6 +64,7 @@ public class BlackListActivity extends AppCompatActivity {
             public void onClick(View v) {
             }
         });
+        
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
