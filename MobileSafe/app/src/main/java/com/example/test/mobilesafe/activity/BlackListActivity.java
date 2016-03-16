@@ -62,9 +62,10 @@ public class BlackListActivity extends AppCompatActivity {
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(intent);
             }
         });
-        
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
