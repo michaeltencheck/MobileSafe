@@ -12,10 +12,18 @@
     tools:context="com.example.test.mobilesafe.activity.ContactListActivity"
     tools:showIn="@layout/activity_contact_list">
 
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>
