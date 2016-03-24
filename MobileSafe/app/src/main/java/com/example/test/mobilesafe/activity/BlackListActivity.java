@@ -3,6 +3,7 @@ package com.example.test.mobilesafe.activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -26,7 +27,6 @@ public class BlackListActivity extends AppCompatActivity {
     private EditText editText;
     private String number;
     private ListView listView;
-    private Intent intent;
     private BlackListAdapter adapter;
     private List<BlackList> lists;
     private Button add;
@@ -48,8 +48,6 @@ public class BlackListActivity extends AppCompatActivity {
             }
         });
 
-        intent = new Intent(this, ContactListActivity.class);
-
         editText = (EditText) findViewById(R.id.et_cbl_input_number);
         listView = (ListView) findViewById(R.id.lv_cbl_list_view);
         lists = new ArrayList<>();
@@ -62,7 +60,9 @@ public class BlackListActivity extends AppCompatActivity {
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                Intent intent= new Intent(Intent.ACTION_PICK,  ContactsContract.Contacts.CONTENT_URI);
+
+                startActivityForResult(intent, 1);
             }
         });
 
