@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlackListActivity extends AppCompatActivity {
+    private static final int PICK_CONTACT = 1;
     private EditText editText;
     private String number;
     private ListView listView;
@@ -62,7 +63,7 @@ public class BlackListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent= new Intent(Intent.ACTION_PICK,  ContactsContract.Contacts.CONTENT_URI);
 
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, PICK_CONTACT);
             }
         });
 
@@ -88,5 +89,9 @@ public class BlackListActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case (PICK_CONTACT):
+                break;
+        }
     }
 }
