@@ -96,6 +96,7 @@ public class BlackListActivity extends AppCompatActivity {
             case (PICK_CONTACT):
                 if (resultCode == Activity.RESULT_OK) {
                     Uri contactData = data.getData();
+                    Cursor cursor = getContentResolver().query(contactData, null, null, null, null);
                 }
                 break;
         }
