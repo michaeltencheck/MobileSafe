@@ -98,6 +98,8 @@ public class BlackListActivity extends AppCompatActivity {
                     Uri contactData = data.getData();
                     Cursor cursor = getContentResolver().query(contactData, null, null, null, null);
                     if (cursor.moveToFirst()) {
+                        String name = cursor.getString
+                                (cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                     }
                 }
                 break;
