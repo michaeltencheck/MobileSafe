@@ -100,6 +100,7 @@ public class BlackListActivity extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         String name = cursor.getString
                                 (cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                        /*今天研究海淘，先修整修整*/
                     }
                 }
                 break;
