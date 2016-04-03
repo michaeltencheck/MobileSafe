@@ -97,13 +97,14 @@ public class BlackListActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     Uri contactData = data.getData();
                     Cursor cursor = getContentResolver().query(contactData, null, null, null, null);
-                    if (cursor.moveToFirst()) {
+                    if (cursor.moveToNext()) {
                         String name = cursor.getString
                                 (cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                         String number = cursor.getString
                                 (cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         /*今天研究海淘，先修整修整*/
                         listAdd(name,number);
+                        adapter.notifyDataSetChanged();
                     }
                 }
                 break;
