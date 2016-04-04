@@ -102,6 +102,7 @@ public class BlackListActivity extends AppCompatActivity {
                                 (cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                         String number = cursor.getString
                                 (cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        /*调试后出现cursor unavailable，今天心有挂牵，to be continues*/
                         /*今天研究海淘，先修整修整*/
                         listAdd(name,number);
                         adapter.notifyDataSetChanged();
