@@ -95,7 +95,7 @@ public class BlackListActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
+    /*    switch (requestCode) {
             case (PICK_CONTACT):
                 if (resultCode == Activity.RESULT_OK) {
                     Uri contactData = data.getData();
@@ -106,14 +106,15 @@ public class BlackListActivity extends AppCompatActivity {
                                 (cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                         String number = cursor.getString
                                 (cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        /*调试后出现cursor unavailable，今天心有挂牵，to be continues*/
-                        /*今天研究海淘，先修整修整*/
+                        *//*调试后出现cursor unavailable，今天心有挂牵，to be continues*//*
+                        *//*今天研究海淘，先修整修整*//*
                         listAdd(name,number);
                         adapter.notifyDataSetChanged();
                     }
                 }
                 break;
-        }
+        }*/
+        retrieveContactNumber();
     }
 
     private void retrieveContactNumber() {
