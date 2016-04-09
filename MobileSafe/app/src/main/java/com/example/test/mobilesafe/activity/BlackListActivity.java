@@ -162,6 +162,8 @@ public class BlackListActivity extends AppCompatActivity {
         if (cursorPhone.moveToFirst()) {
             contactNumber = cursorPhone.getString
                     (cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            listAdd("unknown", contactNumber);
+            adapter.notifyDataSetChanged();
         }
 
         cursorPhone.close();
