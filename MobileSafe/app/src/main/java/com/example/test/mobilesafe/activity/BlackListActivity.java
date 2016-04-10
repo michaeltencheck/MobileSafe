@@ -96,6 +96,10 @@ public class BlackListActivity extends AppCompatActivity {
 
     private void listAdd(String name, String tel_number) {
         BlackList blackList = new BlackList(name, tel_number);
+        for (int i = 0; i < lists.size(); i++) {
+            String existNumber = lists.get(i).getTel_number();
+            
+        }
         lists.add(blackList);
     }
 
