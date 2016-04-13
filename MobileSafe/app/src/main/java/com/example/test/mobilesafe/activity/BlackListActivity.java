@@ -95,15 +95,16 @@ public class BlackListActivity extends AppCompatActivity {
     }
 
     private void listAdd(String name, String tel_number) {
+        List<String> numberGroup = new ArrayList<>();
         BlackList blackList = new BlackList(name, tel_number);
         if (lists.isEmpty()) {
             lists.add(blackList);
         }
         for (int i = 0; i < lists.size(); i++) {
             String existNumber = lists.get(i).getTel_number();
-            if (!(existNumber.contains(tel_number) || tel_number.contains(existNumber))) {
+  /*          if (!(existNumber.contains(tel_number) | tel_number.contains(existNumber))) {
                 lists.add(blackList);
-            }
+            }*/
         }
     }
 
