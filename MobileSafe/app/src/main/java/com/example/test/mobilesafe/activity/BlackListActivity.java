@@ -102,6 +102,7 @@ public class BlackListActivity extends AppCompatActivity {
         }
         for (int i = 0; i < lists.size(); i++) {
             String existNumber = lists.get(i).getTel_number();
+            numberGroup.add(existNumber);
   /*          if (!(existNumber.contains(tel_number) | tel_number.contains(existNumber))) {
                 lists.add(blackList);
             }*/
