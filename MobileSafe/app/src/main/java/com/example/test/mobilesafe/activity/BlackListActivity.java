@@ -99,14 +99,19 @@ public class BlackListActivity extends AppCompatActivity {
         BlackList blackList = new BlackList(name, tel_number);
         if (lists.isEmpty()) {
             lists.add(blackList);
-        }
-        for (int i = 0; i < lists.size(); i++) {
-            String existNumber = lists.get(i).getTel_number();
-            numberGroup.add(existNumber);
+        } else {
+            for (int i = 0; i < lists.size(); i++) {
+                String existNumber = lists.get(i).getTel_number();
+                numberGroup.add(existNumber);
   /*          if (!(existNumber.contains(tel_number) | tel_number.contains(existNumber))) {
                 lists.add(blackList);
             }*/
+            }
+            if (numberGroup.contains(blackList)) {
+
+            }
         }
+
     }
 
     @Override
