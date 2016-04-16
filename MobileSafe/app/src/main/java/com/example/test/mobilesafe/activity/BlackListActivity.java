@@ -99,6 +99,7 @@ public class BlackListActivity extends AppCompatActivity {
         BlackList blackList = new BlackList(name, tel_number);
         if (lists.isEmpty()) {
             lists.add(blackList);
+            adapter.notifyDataSetChanged();
         } else {
             for (int i = 0; i < lists.size(); i++) {
                 String existNumber = lists.get(i).getTel_number();
@@ -107,8 +108,9 @@ public class BlackListActivity extends AppCompatActivity {
                 lists.add(blackList);
             }*/
             }
-            if (numberGroup.contains(blackList)) {
-
+            if (!numberGroup.contains(blackList)) {
+                lists.add(blackList);
+                adapter.notifyDataSetChanged();
             }
         }
 
