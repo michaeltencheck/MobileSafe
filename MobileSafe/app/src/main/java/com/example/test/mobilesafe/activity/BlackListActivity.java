@@ -3,6 +3,7 @@ package com.example.test.mobilesafe.activity;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -45,6 +46,7 @@ public class BlackListActivity extends AppCompatActivity {
     private Button choose;
     private Uri uriContact;
     private String contactID;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class BlackListActivity extends AppCompatActivity {
         lists = new ArrayList<>();
         adapter = new BlackListAdapter(this, lists);
         listView.setAdapter(adapter);
+
 
         add = (Button) findViewById(R.id.bt_cbl_add);
         choose = (Button) findViewById(R.id.bt_cbl_choose);
