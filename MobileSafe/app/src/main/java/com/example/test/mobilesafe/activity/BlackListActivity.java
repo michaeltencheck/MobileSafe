@@ -47,6 +47,7 @@ public class BlackListActivity extends AppCompatActivity {
     private Uri uriContact;
     private String contactID;
     private SharedPreferences.Editor editor;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,8 @@ public class BlackListActivity extends AppCompatActivity {
         adapter = new BlackListAdapter(this, lists);
         listView.setAdapter(adapter);
 
+        preferences = getSharedPreferences("blacklist", MODE_PRIVATE);
+        editor = preferences.edit();
 
         add = (Button) findViewById(R.id.bt_cbl_add);
         choose = (Button) findViewById(R.id.bt_cbl_choose);
