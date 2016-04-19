@@ -103,23 +103,20 @@ public class BlackListActivity extends AppCompatActivity {
     private void listAdd(String name, String tel_number) {
         List<String> numberGroup = new ArrayList<>();
         BlackList blackList = new BlackList(name, tel_number);
-        if (lists.isEmpty()) {
+        /*想把blacklist存储在sharepreferences内*/
+/*        if (lists.isEmpty()) {
             lists.add(blackList);
             adapter.notifyDataSetChanged();
         } else {
             for (int i = 0; i < lists.size(); i++) {
                 String existNumber = lists.get(i).getTel_number();
                 numberGroup.add(existNumber);
-  /*          if (!(existNumber.contains(tel_number) | tel_number.contains(existNumber))) {
-                lists.add(blackList);
-            }*/
             }
             if (!numberGroup.contains(blackList)) {
                 lists.add(blackList);
                 adapter.notifyDataSetChanged();
             }
-        }
-
+        }*/
     }
 
     @Override
