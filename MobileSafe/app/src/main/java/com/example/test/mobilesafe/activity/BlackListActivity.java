@@ -46,8 +46,8 @@ public class BlackListActivity extends AppCompatActivity {
     private Button choose;
     private Uri uriContact;
     private String contactID;
-    private SharedPreferences.Editor editor;
-    private SharedPreferences preferences;
+    private static SharedPreferences.Editor editor;
+    private static SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +98,19 @@ public class BlackListActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public <T> void setList(String key, List<T> list)
+    {
+/*        Gson gson = new Gson();
+        String json = gson.toJson(list);
+
+        set(key, json);*/
+    }
+    public static void set(String key, String value)
+    {
+        editor.putString(key, value);
+        editor.commit();
     }
 
     private void listAdd(String name, String tel_number) {
