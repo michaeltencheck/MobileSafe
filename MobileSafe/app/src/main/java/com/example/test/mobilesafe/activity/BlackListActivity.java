@@ -100,6 +100,8 @@ public class BlackListActivity extends AppCompatActivity {
         });
     }
 
+
+    /*状态不佳，来日再战*/
     public <T> void setList(String key, List<T> list)
     {
 /*        Gson gson = new Gson();
